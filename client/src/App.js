@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Home from './components/Home';
 import Friends from './components/Friends.jsx';
 import Profile from './components/Profile';
+import Signup from './components/Signup.jsx';
 import './App.css'
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path="/friends" element={<Friends />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
 
           </Routes>
         </BrowserRouter>
