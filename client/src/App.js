@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
 import Navigation from './components/Navigation.jsx';
 import Login from './components/Login';
@@ -11,14 +11,26 @@ import './App.css'
 
 function App() {
 
+  const testApi = async () => {
+    const query = await fetch('/api/users', {
+      method: 'GET'
+    })
+    const response = await query.json()
+    console.log(response)
+    console.log("attempting to test api")
+  }
+
+
+  useEffect(() => {
+    testApi()
+  })
 
 
 
   return (
     <div >
       <header>
-        <Navigation
-        />
+        <Navigation />
         <BrowserRouter >
           <Routes>
             <Route path="/" element={<Home />} />
