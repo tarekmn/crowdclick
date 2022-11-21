@@ -1,6 +1,16 @@
 import { useEffect, useState } from "react";
+import { useAppContext } from "../utils/AppContext";
 
 const Home = (props) => {
+  const { appState } = useAppContext();
+  console.log(appState);
+
+  useEffect(() => {
+    if (!appState || !appState.user || !appState.user_id) {
+      // window.location.href = "/login";
+    }
+  }, [appState]);
+
   const [newUsers, setNewUsers] = useState([]);
   console.log(props.userData);
 
@@ -9,7 +19,10 @@ const Home = (props) => {
   // const { username, thoughts } = props.userData;
   const condenseUsers = () => {
     return props.userData.map((user) => {
-      return { username: user.username, thoughts: user.thoughts };
+      return {
+        username: user.username,
+        thoughts: user.thoughts,
+      };
     });
   };
 

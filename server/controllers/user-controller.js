@@ -94,6 +94,22 @@ module.exports = {
     }
   },
 
+  async authenticateLogin(req, res) {
+    const foundUser = await User.findOne({ email: req.body.email })
+    if (!foundUser) return res.status(401).json({ message: "Login failed." })
+
+    const isValid = await bcrypt.compare(req.body.password, foundUser.password)
+    if (!isValid) return res.status(401).json({ message: "Login failed." })
+
+    const { password, ...modifiedUser } = foundUser
+    const token = jwt.sign({ _id: foundUser._id, email: foundUser.email }, process.env.JWT_SECRET)
+
+    res
+      .status(200)
+      .set({ "auth-token": token })
+      .json({ result: "success", user: modifiedUser, token: token })
+  },
+
   async lookupUserByToken(req, res) {
     if (!req.headers || !req.headers.cookie) return res.status(401).json({ msg: "un-authorized" })
 
@@ -110,21 +126,7 @@ module.exports = {
     return res.status(200).json({ result: "success", payload: user })
   },
 
-  async authenticateLogin(req, res) {
-    const foundUser = await User.findOne({ email: req.body.email })
-    if (!foundUser) return res.status(401).json({ message: "Login failed." })
 
-    const isValid = await bcrypt.compare(req.body.password, foundUser.password)
-    if (!isValid) return res.status(401).json({ message: "Login failed." })
-
-    const { password, ...modifiedUser } = foundUser
-    const token = jwt.sign({ _id: foundUser._id, email: foundUser.email }, process.env.JWT_SECRET)
-
-    res
-      .status(200)
-      .set({ "auth-token": token })
-      .json({ result: "success", user: modifiedUser, token: token })
-  },
 
 
 

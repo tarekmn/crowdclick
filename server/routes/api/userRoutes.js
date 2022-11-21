@@ -7,7 +7,8 @@ const {
   createUser,
   updateUser,
   deleteUser,
-  authenticateLogin
+  authenticateLogin,
+  lookupUserByToken
 
 } = require('../../controllers/user-controller')
 
@@ -21,6 +22,7 @@ router.route("/:userId").get(getSingleUser).put(updateUser).delete(deleteUser);
 
 
 router.route("/auth").post(authenticateLogin)
+router.route("/lookup").get(lookupUserByToken)
 
 
 module.exports = router;

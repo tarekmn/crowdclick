@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from "react"
 import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
+import { AppProvider } from "./utils/AppContext"
 import Navigation from './components/Navigation.jsx';
 import Login from './components/Login';
 import Home from './components/Home';
@@ -33,7 +34,7 @@ function App() {
 
   return (
     <div >
-      <header>
+      <AppProvider value={{}}>
         <Navigation />
         <BrowserRouter >
           <Routes>
@@ -45,7 +46,7 @@ function App() {
 
           </Routes>
         </BrowserRouter>
-      </header>
+      </AppProvider>
 
     </div>
   );
