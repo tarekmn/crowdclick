@@ -11,19 +11,23 @@ import './App.css'
 
 function App() {
 
-  const testApi = async () => {
+  const [userData, setUserData] = useState()
+
+
+
+  const getUsers = async () => {
     const query = await fetch('/api/users', {
       method: 'GET'
     })
     const response = await query.json()
-    console.log(response)
-    console.log("attempting to test api")
+    setUserData(response)
   }
 
 
   useEffect(() => {
-    testApi()
-  })
+    getUsers()
+    // console.log(userData)
+  }, [])
 
 
 
@@ -33,7 +37,7 @@ function App() {
         <Navigation />
         <BrowserRouter >
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home userData={userData} setUserData={setUserData} />} />
             <Route path="/friends" element={<Friends />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<Login />} />

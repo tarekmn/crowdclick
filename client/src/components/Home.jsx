@@ -1,7 +1,29 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Home = (props) => {
-  useEffect(() => {}, [props.currSection]);
+  const [newUsers, setNewUsers] = useState([]);
+  console.log(props.userData);
+
+  // deconstruct thoughts/reactions so its controllable. then implement post apis here for deletes and additions?
+
+  // const { username, thoughts } = props.userData;
+  const condenseUsers = () => {
+    return props.userData.map((user) => {
+      return { username: user.username, thoughts: user.thoughts };
+    });
+  };
+
+  useEffect(() => {
+    if (newUsers.length) console.log(newUsers);
+  }, [newUsers]);
+
+  useEffect(() => {
+    if (props.userData && props.userData.length && !newUsers.length) {
+      setNewUsers(condenseUsers());
+    }
+  }, [props.userData]);
+
+  // console.log(newUsers);
 
   return (
     <>
