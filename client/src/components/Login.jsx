@@ -21,11 +21,13 @@ const Login = () => {
     });
     const authResult = await authCheck.json();
     console.log(authResult);
+    console.log(appState);
 
     // If the login was good, save the returned token as a cookie
     if (authResult.result === "success") {
       Cookie.set("auth-token", authResult.token);
-      setAppState({ ...setAppState, user: authResult.user });
+      setAppState({ ...setAppState, user: authResult.user._doc });
+      console.log(appState);
     } else {
       setFormMessage({
         type: "danger",
@@ -39,13 +41,22 @@ const Login = () => {
   // context. As soon as the employee property of appState is not null, we know we have a logged in user,
   // and so we are redirected to the home page.
   useEffect(() => {
-    if (appState && appState.user) window.location.href = "/";
+    // if (appState && appState.user) window.location.href = "/";
   }, [appState]);
 
   return (
     <>
       <Container style={{ padding: "50px 200px" }}>
         <Form onSubmit={handleLogin}>
+          <div className="d-flex justify-content-center">
+            <img
+              className="mb-4 center"
+              src="logo-no-background.png"
+              alt=""
+              width="210"
+              height="140"
+            />
+          </div>
           <Form.Group className="mb-3" controlId="email">
             <Form.Label>Email address</Form.Label>
             <Form.Control
