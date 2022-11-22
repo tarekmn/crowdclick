@@ -32,7 +32,7 @@ const AppProvider = (props) => {
   return (
     <>
       {appReady === true && (
-        <AppContext.Provider value={{ appState, setAppState, logout }}>
+        <AppContext.Provider value={{ appState, setAppState, lookupUser, logout }}>
           {props.children}
         </AppContext.Provider>
       )}

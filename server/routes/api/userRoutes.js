@@ -16,13 +16,14 @@ const {
 // // /api/users
 router.route("/").get(getUsers).post(createUser);;
 
+router.route("/lookup").get(lookupUserByToken)
 
 // // /api/users/:userId
 router.route("/:userId").get(getSingleUser).put(updateUser).delete(deleteUser);
 
 
 router.route("/auth").post(authenticateLogin)
-router.route("/lookup").get(lookupUserByToken)
+
 
 
 module.exports = router;

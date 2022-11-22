@@ -20,14 +20,14 @@ const Login = () => {
       body: JSON.stringify(loginCreds),
     });
     const authResult = await authCheck.json();
-    console.log(authResult);
-    console.log(appState);
 
     // If the login was good, save the returned token as a cookie
     if (authResult.result === "success") {
       Cookie.set("auth-token", authResult.token);
-      setAppState({ ...setAppState, user: authResult.user._doc });
-      console.log(appState);
+
+      const update = { ...appState, user: authResult.user._doc };
+
+      setAppState(update);
     } else {
       setFormMessage({
         type: "danger",
@@ -41,7 +41,10 @@ const Login = () => {
   // context. As soon as the employee property of appState is not null, we know we have a logged in user,
   // and so we are redirected to the home page.
   useEffect(() => {
-    // if (appState && appState.user) window.location.href = "/";
+    if (appState && appState.user) {
+      window.location.href = "/";
+      console.log(appState);
+    }
   }, [appState]);
 
   return (

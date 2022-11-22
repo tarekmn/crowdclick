@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "../utils/AppContext";
 
 const Home = (props) => {
-  const { appState } = useAppContext();
-  console.log(appState);
+  const { appState, lookupUser } = useAppContext();
 
   useEffect(() => {
-    if (!appState || !appState.user || !appState.user_id) {
-      // window.location.href = "/login";
+    console.log(appState);
+    if (!appState || !appState.user) {
+      window.location.href = "/login";
     }
   }, [appState]);
 
