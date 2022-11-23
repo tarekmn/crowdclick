@@ -86,7 +86,7 @@ connection.once("open", async () => {
 
   await User.findOneAndUpdate(
     { _id: user1._id },
-    { $push: { thoughts: thought1._id, friends: { "_id": "637e83995dd421603e3e8163", "_id": "637e83a133c49cd869012efc", "_id": "637e83a703d030945ab9fa60", } }, },
+    { $push: { thoughts: thought1._id, friends: [{ "_id": "637e83995dd421603e3e8163" }, { "_id": "637e83a133c49cd869012efc" }, { "_id": "637e83a703d030945ab9fa60" }] }, },
     { new: true }
   )
 

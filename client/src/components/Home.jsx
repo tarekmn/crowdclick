@@ -5,14 +5,12 @@ const Home = (props) => {
   const { appState, lookupUser } = useAppContext();
 
   useEffect(() => {
-    console.log(appState);
     if (!appState || !appState.user) {
       window.location.href = "/login";
     }
   }, [appState]);
 
   const [newUsers, setNewUsers] = useState([]);
-  console.log(props.userData);
 
   // deconstruct thoughts/reactions so its controllable. then implement post apis here for deletes and additions?
 
