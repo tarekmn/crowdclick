@@ -47,7 +47,13 @@ const Home = (props) => {
 
         {newUsers.map((item, i) => (
           <div key={i}>
-            <p> {item.username}</p>
+            <p>
+              {" "}
+              {item.username}{" "}
+              {item.thoughts.map((x, y) => (
+                <span key={y}>{x.thoughtText}</span>
+              ))}
+            </p>
           </div>
         ))}
 
