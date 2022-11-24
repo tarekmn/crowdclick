@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../utils/AppContext";
+import LogoSection from "../sections/LogoSection";
 
 const Home = (props) => {
   const { appState, lookupUser } = useAppContext();
@@ -20,6 +21,7 @@ const Home = (props) => {
       return {
         username: user.username,
         thoughts: user.thoughts,
+        // thoughtText: user.thoughts.thoughtText,
       };
     });
   };
@@ -30,30 +32,27 @@ const Home = (props) => {
 
   useEffect(() => {
     if (props.userData && props.userData.length && !newUsers.length) {
+      console.log(condenseUsers());
       setNewUsers(condenseUsers());
     }
-  }, [props.userData]);
 
-  // console.log(newUsers);
+    const obj1 = Object.assign({}, newUsers);
+    console.log(obj1);
+  }, [props.userData]);
 
   return (
     <>
       <main className="container">
-        <div>
-          <div className="d-flex justify-content-center">
-            <img
-              className="m-3"
-              src="logo-no-background.png"
-              alt=""
-              width="210"
-              height="140"
-            />
+        <LogoSection />
+
+        {newUsers.map((item, i) => (
+          <div key={i}>
+            <p> {item.username}</p>
           </div>
-        </div>
+        ))}
+
         <div className="my-3 p-3 bg-body bg-light rounded shadow-sm">
-          <h6 className="purple-color border-bottom pb-2 mb-0">
-            Recent updates
-          </h6>
+          <h6 className=" border-bottom pb-2 mb-0">Recent updates</h6>
           <form id="post-form">
             <div className="form-group">
               <textarea
@@ -76,11 +75,9 @@ const Home = (props) => {
             />
             <p className="pb-3 mb-0 small lh-sm border-bottom">
               <strong className="d-block text-gray-dark">
-                Did you hear that
                 <a className="purple-color" href="/users/{{post.User.id}}">
-                  Tarek{" "}
+                  Tarek:{" "}
                 </a>
-                said...
               </strong>
               Content
             </p>
@@ -89,11 +86,9 @@ const Home = (props) => {
           <div className="d-flex text-muted pt-3">
             <p className="pb-3 mb-0 small lh-sm border-bottom">
               <strong className="d-block text-gray-dark">
-                And then
                 <a className="purple-color" href="/users/{{comment.User.id}}">
-                  commentor
+                  commentor:
                 </a>
-                said...
               </strong>
               content
             </p>

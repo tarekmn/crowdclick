@@ -3,6 +3,7 @@ import Cookie from "js-cookie";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import { useAppContext } from "../utils/AppContext";
 import { useEffect } from "react";
+import LogoSection from "../sections/LogoSection";
 
 const Login = () => {
   const { appState, setAppState } = useAppContext();
@@ -51,15 +52,7 @@ const Login = () => {
     <>
       <Container style={{ padding: "50px 200px" }}>
         <Form onSubmit={handleLogin}>
-          <div className="d-flex justify-content-center">
-            <img
-              className="mb-4 center"
-              src="logo-no-background.png"
-              alt=""
-              width="210"
-              height="140"
-            />
-          </div>
+          <LogoSection />
           <Form.Group className="mb-3" controlId="email">
             <Form.Label>Email address</Form.Label>
             <Form.Control

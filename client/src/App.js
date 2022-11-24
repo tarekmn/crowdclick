@@ -2,12 +2,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from "react"
 import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
 import { AppProvider } from "./utils/AppContext"
-import Navigation from './components/Navigation.jsx';
-import Login from './components/Login';
-import Home from './components/Home';
-import Friends from './components/Friends.jsx';
-import Profile from './components/Profile';
-import Signup from './components/Signup.jsx';
+import Navigation from './pages/Navigation.jsx';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import Friends from './pages/Friends.jsx';
+import Profile from './pages/Profile';
+import Signup from './pages/Signup.jsx';
 import './App.css'
 
 function App() {
