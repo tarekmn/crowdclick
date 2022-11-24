@@ -45,18 +45,6 @@ const Home = (props) => {
       <main className="container">
         <LogoSection />
 
-        {newUsers.map((item, i) => (
-          <div key={i}>
-            <p>
-              {" "}
-              {item.username}{" "}
-              {item.thoughts.map((x, y) => (
-                <span key={y}>{x.thoughtText}</span>
-              ))}
-            </p>
-          </div>
-        ))}
-
         <div className="my-3 p-3 bg-body bg-light rounded shadow-sm">
           <h6 className=" border-bottom pb-2 mb-0">Recent updates</h6>
           <form id="post-form">
@@ -72,36 +60,45 @@ const Home = (props) => {
             </button>
           </form>
 
-          <div className="d-flex text-muted pt-3">
-            <img
-              className="postimg"
-              src="{{post.User.image}}"
-              width="32"
-              height="32"
-            />
-            <p className="pb-3 mb-0 small lh-sm border-bottom">
-              <strong className="d-block text-gray-dark">
-                <a className="purple-color" href="/users/{{post.User.id}}">
-                  Tarek:{" "}
-                </a>
-              </strong>
-              Content
-            </p>
-          </div>
+          {newUsers.map((item, i) => (
+            <div key={i}>
+              <div className="d-flex text-muted pt-3">
+                <img
+                  className="postimg"
+                  src="{{post.User.image}}"
+                  width="32"
+                  height="32"
+                />
+                <p className="pb-3 mb-0 small lh-sm border-bottom">
+                  <strong className="d-block text-gray-dark">
+                    <a className="purple-color" href="/users/{{post.User.id}}">
+                      {item.username}
+                    </a>
+                  </strong>
+                  {item.thoughts.map((x, y) => (
+                    <span key={y}>{x.thoughtText}</span>
+                  ))}
+                </p>
+              </div>
 
-          <div className="d-flex text-muted pt-3">
-            <p className="pb-3 mb-0 small lh-sm border-bottom">
-              <strong className="d-block text-gray-dark">
-                <a className="purple-color" href="/users/{{comment.User.id}}">
-                  commentor:
-                </a>
-              </strong>
-              content
-            </p>
-          </div>
+              <div className="d-flex text-muted pt-3">
+                <p className="pb-3 mb-0 small lh-sm border-bottom">
+                  <strong className="d-block text-gray-dark">
+                    <a
+                      className="purple-color"
+                      href="/users/{{comment.User.id}}"
+                    >
+                      commentor:
+                    </a>
+                  </strong>
+                  content
+                </p>
+              </div>
 
-          <button className="btn-comment btn-secondary">comment</button>
-          <div id="commentArea-{{@index}}"></div>
+              <button className="btn-comment btn-secondary">comment</button>
+              <div id="commentArea-{{@index}}"></div>
+            </div>
+          ))}
         </div>
       </main>
     </>
