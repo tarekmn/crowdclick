@@ -1,7 +1,9 @@
 import { useState } from "react";
+import Cookie from "js-cookie";
 import { Button, Container, Form } from "react-bootstrap";
 import { useAppContext } from "../utils/AppContext";
 import LogoSection from "../sections/LogoSection";
+import { redirect, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const { appState, setAppState } = useAppContext();
@@ -24,11 +26,13 @@ const Signup = () => {
     });
 
     console.log(query);
+    window.location.href = "/";
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log(newUser);
+
     createUser();
   };
 

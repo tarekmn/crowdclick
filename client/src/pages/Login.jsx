@@ -4,6 +4,7 @@ import { Alert, Button, Container, Form } from "react-bootstrap";
 import { useAppContext } from "../utils/AppContext";
 import { useEffect } from "react";
 import LogoSection from "../sections/LogoSection";
+import { redirect, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { appState, setAppState } = useAppContext();
@@ -38,6 +39,11 @@ const Login = () => {
     setLoginCreds({ email: "", password: "" });
   };
 
+  const navigate = useNavigate();
+  const navigateToSignUp = () => {
+    navigate("/signup");
+  };
+
   // Here is one of the best uses for useEffect. Here we have it monitoring the appState value that's in
   // context. As soon as the employee property of appState is not null, we know we have a logged in user,
   // and so we are redirected to the home page.
@@ -68,7 +74,6 @@ const Login = () => {
               }
             />
           </Form.Group>
-
           <Form.Group className="mb-3" controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
@@ -84,9 +89,12 @@ const Login = () => {
               }
             />
           </Form.Group>
-
           <Button variant="primary" type="submit">
             Submit
+          </Button>{" "}
+          {"      "}
+          <Button variant="secondary" type="click" onClick={navigateToSignUp}>
+            Sign-up
           </Button>
         </Form>
 
