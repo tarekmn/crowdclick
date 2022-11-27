@@ -7,7 +7,7 @@ const Home = (props) => {
 
   const friendIds = appState.user.friends;
   console.log(friendIds);
-  console.log(props.userData);
+  // console.log(props.userData);
 
   // const friendsUserData = props.userData.filter(function (x) {
   //   return (x._id = "637e83995dd421603e3e8163");
@@ -27,7 +27,7 @@ const Home = (props) => {
   const condenseUsers = () => {
     return props.userData.map((user) => {
       return {
-        _id: user._id,
+        id: user._id,
         username: user.username,
         thoughts: user.thoughts,
         // thoughtText: user.thoughts.thoughtText,
@@ -41,9 +41,14 @@ const Home = (props) => {
 
   useEffect(() => {
     if (props.userData && props.userData.length && !newUsers.length) {
-      console.log(condenseUsers());
+      // console.log(condenseUsers());
       setNewUsers(condenseUsers());
     }
+
+    console.log(newUsers);
+
+    // const result = newUsers.filter((x) => (x.id = "637e83995dd421603e3e8163"));
+    // console.log(result);
   }, [props.userData]);
 
   return (
