@@ -1,65 +1,97 @@
-const Signup = () => {
-  return (
-    <>
-      <div className="login-form justify-content-center d-flex">
-        <form className="col-6" id="signup-form">
-          <div className="d-flex justify-content-center">
-            <img
-              className="mb-4 center"
-              src="logo-no-background.png"
-              alt=""
-              width="210"
-              height="140"
-            />
-          </div>
-          <h1 className="h3 mb-3 fw-normal">Create an account </h1>
+import { useState } from "react";
+import { Button, Container, Form } from "react-bootstrap";
+import { useAppContext } from "../utils/AppContext";
+import LogoSection from "../sections/LogoSection";
 
-          <div className="form-floating">
-            <input
-              type="text"
-              className="form-control"
-              id="first_name"
-              placeholder="John"
-            />
-            <label htmlFor="floatingInput">First name</label>
-          </div>
-          <div className="form-floating">
-            <input
-              type="text"
-              className="form-control"
-              id="last_name"
-              placeholder="Doe"
-            />
-            <label htmlFor="floatingInput">Last name</label>
-          </div>
-          <div className="form-floating">
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              placeholder="name@example.com"
-            />
-            <label htmlFor="floatingInput">Email address</label>
-          </div>
-          <div className="form-floating">
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Password"
-            />
-            <label htmlFor="floatingPassword">Password</label>
-          </div>
-          <button
-            id="login-btn"
-            className="w-100 btn btn-md btn-primary"
-            type="submit"
-          >
-            Create account
-          </button>
-        </form>
-      </div>
-    </>
+const Signup = () => {
+  const { appState, setAppState } = useAppContext();
+
+  const [newUser, setNewUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const createUser = async (req, res) => {
+    const query = await fetch("/api/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: newUser.username,
+        email: newUser.email,
+        password: newUser.password,
+      }),
+    });
+
+    console.log(query);
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log(newUser);
+    createUser();
+  };
+
+  return (
+    <Container style={{ padding: "50px 200px" }}>
+      <Form onSubmit={handleFormSubmit}>
+        <LogoSection />
+        <h1>Create a new account!</h1>
+        <Form.Group className="mb-3">
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type="text"
+            name="username"
+            placeholder="username"
+            value={newUser.username}
+            onChange={(e) =>
+              setNewUser({
+                ...newUser,
+                [e.target.name]: e.target.value,
+              })
+            }
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            type="text"
+            name="email"
+            placeholder="jdoe@gmail.com"
+            value={newUser.email}
+            onChange={(e) =>
+              setNewUser({
+                ...newUser,
+                [e.target.name]: e.target.value,
+              })
+            }
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="text"
+            name="password"
+            placeholder="password"
+            value={newUser.password}
+            onChange={(e) =>
+              setNewUser({
+                ...newUser,
+                [e.target.name]: e.target.value,
+              })
+            }
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Button type="submit" variant="primary" size="md">
+            Submit
+          </Button>
+        </Form.Group>
+      </Form>
+    </Container>
   );
 };
 

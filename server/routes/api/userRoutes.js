@@ -3,6 +3,7 @@ const router = require('express').Router()
 const {
 
   getUsers,
+  getFriends,
   getSingleUser,
   createUser,
   updateUser,
@@ -14,7 +15,8 @@ const {
 
 // Declare the routes that point to the controllers above
 // // /api/users
-router.route("/").get(getUsers).post(createUser);;
+router.route("/").get(getUsers).post(createUser);
+router.route("/friends").get(getFriends)
 
 router.route("/lookup").get(lookupUserByToken)
 

@@ -31,6 +31,25 @@ module.exports = {
     }
   },
 
+  async getFriends(req, res) {
+    try {
+      const friends = await User.find({ _id: User.friends._id }).populate({
+        path: "thoughts",
+        populate: {
+          path: "reactions",
+          model: "Reaction"
+        }
+      }).populate('friends')
+      if (!friends) {
+        return res.status(404).json({ message: 'No friends in db.' })
+      }
+      res.status(200).json(friends)
+    } catch (error) {
+      console.log(error.message)
+      res.status(500).json(error)
+    }
+  },
+
 
   async getSingleUser(req, res) {
     try {
