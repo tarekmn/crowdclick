@@ -5,6 +5,16 @@ import LogoSection from "../sections/LogoSection";
 const Home = (props) => {
   const { appState, lookupUser } = useAppContext();
 
+  const friendIds = appState.user.friends;
+  console.log(friendIds);
+  console.log(props.userData);
+
+  // const friendsUserData = props.userData.filter(function (x) {
+  //   return (x._id = "637e83995dd421603e3e8163");
+  // });
+
+  // console.log(friendsUserData);
+
   useEffect(() => {
     if (!appState || !appState.user) {
       window.location.href = "/login";
@@ -13,12 +23,11 @@ const Home = (props) => {
 
   const [newUsers, setNewUsers] = useState([]);
 
-  // deconstruct thoughts/reactions so its controllable. then implement post apis here for deletes and additions?
-
   // const { username, thoughts } = props.userData;
   const condenseUsers = () => {
     return props.userData.map((user) => {
       return {
+        _id: user._id,
         username: user.username,
         thoughts: user.thoughts,
         // thoughtText: user.thoughts.thoughtText,
@@ -35,9 +44,6 @@ const Home = (props) => {
       console.log(condenseUsers());
       setNewUsers(condenseUsers());
     }
-
-    const obj1 = Object.assign({}, newUsers);
-    console.log(obj1);
   }, [props.userData]);
 
   return (
