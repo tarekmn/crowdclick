@@ -3,7 +3,7 @@ import { useAppContext } from "../utils/AppContext";
 import LogoSection from "../sections/LogoSection";
 
 const Home = (props) => {
-  const { appState, lookupUser } = useAppContext();
+  const { appState } = useAppContext();
 
   useEffect(() => {
     if (!appState || !appState.user) {
@@ -12,6 +12,7 @@ const Home = (props) => {
   }, [appState]);
 
   const [newUsers, setNewUsers] = useState([]);
+  const [justFriends, setJustFriends] = useState([]);
 
   // const { username, thoughts } = props.userData;
   const condenseUsers = () => {
@@ -24,32 +25,35 @@ const Home = (props) => {
     });
   };
 
-  useEffect(() => {}, [newUsers]);
-
   useEffect(() => {
     if (props.userData && props.userData.length && !newUsers.length) {
       setNewUsers(condenseUsers());
     }
-    console.log(newUsers);
+  }, [props.userData]);
 
+  useEffect(() => {
     const friendIds = appState.user.friends;
     console.log(friendIds);
+    console.log(newUsers);
 
-    // const justFriends = newUsers.filter((users) =>
+    const justFriendsF = newUsers.filter((users, i) =>
+      users.id.includes(`${friendIds[i]}`)
+    );
+
+    // const justFriendsF = newUsers.filter((users) =>
     //   users.id.includes("637e83995dd421603e3e8163")
     // );
 
-    const justFriends = newUsers.filter((users, i) => {
-      if (friendIds[i]) {
-        users.id.includes(`${friendIds[i]}`);
-        console.log(friendIds[i]);
-      }
-    });
+    console.log(justFriendsF);
 
     // const justFriends = newUsers.some((user) => friendIds.includes(user.id));
 
+    setJustFriends(justFriendsF);
+  }, [newUsers]);
+
+  useEffect(() => {
     console.log(justFriends);
-  }, [props.userData]);
+  }, [justFriends]);
 
   return (
     <>
