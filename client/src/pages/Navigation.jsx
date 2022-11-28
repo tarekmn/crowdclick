@@ -14,12 +14,8 @@ const Navigation = (props) => {
   useEffect(() => {
     if (!appState || !appState.user) {
       setsignedIn(false);
-
-      console.log(signedIn);
     }
   }, [appState]);
-
-  console.log(signedIn);
 
   return (
     <>

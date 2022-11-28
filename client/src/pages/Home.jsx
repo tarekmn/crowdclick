@@ -24,26 +24,31 @@ const Home = (props) => {
     });
   };
 
-  useEffect(() => {
-    if (newUsers.length) {
-      console.log(newUsers);
-    }
-
-    const friendIds = appState.user.friends;
-    console.log(friendIds);
-
-    const justFriends = newUsers.filter((users) =>
-      users.id.includes("637e83995dd421603e3e8163")
-    );
-
-    console.log(justFriends);
-  }, [newUsers]);
+  useEffect(() => {}, [newUsers]);
 
   useEffect(() => {
     if (props.userData && props.userData.length && !newUsers.length) {
       setNewUsers(condenseUsers());
     }
     console.log(newUsers);
+
+    const friendIds = appState.user.friends;
+    console.log(friendIds);
+
+    // const justFriends = newUsers.filter((users) =>
+    //   users.id.includes("637e83995dd421603e3e8163")
+    // );
+
+    const justFriends = newUsers.filter((users, i) => {
+      if (friendIds[i]) {
+        users.id.includes(`${friendIds[i]}`);
+        console.log(friendIds[i]);
+      }
+    });
+
+    // const justFriends = newUsers.some((user) => friendIds.includes(user.id));
+
+    console.log(justFriends);
   }, [props.userData]);
 
   return (
