@@ -90,6 +90,12 @@ connection.once("open", async () => {
     { new: true }
   )
 
+  await User.findOneAndUpdate(
+    { _id: user2._id },
+    { $push: { thoughts: thought2._id, friends: [{ "_id": "637e838129f498406df23181" }, { "_id": "637e83a133c49cd869012efc" }, { "_id": "637e83ad69e978780b94bd7d" }] }, },
+    { new: true }
+  )
+
 
 
 
@@ -98,9 +104,20 @@ connection.once("open", async () => {
     "thoughtId": "637e84828a5781cb962de5b5",
   });
 
+  const reaction2 = await Reaction.create({
+    "reactionBody": "No! What happened?!",
+    "thoughtId": "637e8488fc3c61679a9ff546",
+  });
+
   await Thought.findOneAndUpdate(
     { _id: thought1._id },
     { $push: { reactions: reaction1._id }, },
+    { new: true }
+  )
+
+  await Thought.findOneAndUpdate(
+    { _id: thought2._id },
+    { $push: { reactions: reaction2._id }, },
     { new: true }
   )
 

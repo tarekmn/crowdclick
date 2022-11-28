@@ -5,16 +5,6 @@ import LogoSection from "../sections/LogoSection";
 const Home = (props) => {
   const { appState, lookupUser } = useAppContext();
 
-  const friendIds = appState.user.friends;
-  console.log(friendIds);
-  // console.log(props.userData);
-
-  // const friendsUserData = props.userData.filter(function (x) {
-  //   return (x._id = "637e83995dd421603e3e8163");
-  // });
-
-  // console.log(friendsUserData);
-
   useEffect(() => {
     if (!appState || !appState.user) {
       window.location.href = "/login";
@@ -30,25 +20,30 @@ const Home = (props) => {
         id: user._id,
         username: user.username,
         thoughts: user.thoughts,
-        // thoughtText: user.thoughts.thoughtText,
       };
     });
   };
 
   useEffect(() => {
-    if (newUsers.length) console.log(newUsers);
+    if (newUsers.length) {
+      console.log(newUsers);
+    }
+
+    const friendIds = appState.user.friends;
+    console.log(friendIds);
+
+    const justFriends = newUsers.filter((users) =>
+      users.id.includes("637e83995dd421603e3e8163")
+    );
+
+    console.log(justFriends);
   }, [newUsers]);
 
   useEffect(() => {
     if (props.userData && props.userData.length && !newUsers.length) {
-      // console.log(condenseUsers());
       setNewUsers(condenseUsers());
     }
-
     console.log(newUsers);
-
-    // const result = newUsers.filter((x) => (x.id = "637e83995dd421603e3e8163"));
-    // console.log(result);
   }, [props.userData]);
 
   return (
@@ -63,7 +58,7 @@ const Home = (props) => {
               <textarea
                 name="content1"
                 id="post-content2"
-                className="post-content2 mytextarea2"
+                className="post-content2 mytextarea2 col-12"
               ></textarea>
             </div>
             <button type="submit" className="btn btn-primary">
