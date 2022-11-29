@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../utils/AppContext";
-import LogoSection from "../sections/LogoSection";
+import LogoSection from "../component/LogoSection";
+import Thought from "../component/Thought";
 
 const Home = (props) => {
   const { appState } = useAppContext();
@@ -34,21 +35,27 @@ const Home = (props) => {
   useEffect(() => {
     const friendIds = appState.user.friends;
     console.log(friendIds);
+    //returns  ["637e83995dd421603e3e8163",  "637e83a133c49cd869012efc", "637e83a703d030945ab9fa60"]
     console.log(newUsers);
+    //returns [ {id: '637e838129f498406df23181', username: 'Tarek', thoughts: Array(1)}, {user 2}, etc]
 
-    const justFriendsF = newUsers.filter((users, i) =>
-      users.id.includes(`${friendIds[i]}`)
+    const justFriends = newUsers.filter((user, i) =>
+      friendIds.includes(user.id)
     );
 
-    // const justFriendsF = newUsers.filter((users) =>
+    // const justFriends = newUsers.filter((users) =>
     //   users.id.includes("637e83995dd421603e3e8163")
     // );
 
-    console.log(justFriendsF);
+    console.log(justFriends);
+    //returns []   its empty
+
+    // console.log(justFriends2);
+    // //returns desired outcome for one person = [{id: '637e838129f498406df23181', username: 'Tarek', thoughts: Array(1)}]
 
     // const justFriends = newUsers.some((user) => friendIds.includes(user.id));
 
-    setJustFriends(justFriendsF);
+    setJustFriends(justFriends);
   }, [newUsers]);
 
   useEffect(() => {
@@ -75,45 +82,34 @@ const Home = (props) => {
             </button>
           </form>
 
-          {newUsers.map((item, i) => (
-            <div key={i}>
-              <div className="d-flex text-muted pt-3">
-                <img
-                  className="postimg"
-                  src="{{post.User.image}}"
-                  width="32"
-                  height="32"
-                />
-                <p className="pb-3 mb-0 small lh-sm border-bottom">
-                  <strong className="d-block text-gray-dark">
-                    <a className="purple-color" href="/users/{{post.User.id}}">
-                      {item.username}
-                    </a>
-                  </strong>
-                  {item.thoughts.map((x, y) => (
-                    <span key={y}>{x.thoughtText}</span>
-                  ))}
-                </p>
-              </div>
+          {justFriends
+            .filter((f) => f.thoughts.length > 0)
+            .map((item, i) => (
+              <div key={i}>
+                <div className="d-flex text-muted pt-3">
+                  <img
+                    className="postimg"
+                    src="{{post.User.image}}"
+                    width="32"
+                    height="32"
+                  />
+                  <div className="pb-3 mb-0 small lh-sm border-bottom">
+                    <strong className="d-block text-gray-dark">
+                      <a
+                        className="purple-color"
+                        href="/users/{{post.User.id}}"
+                      >
+                        {item.username}
+                      </a>
+                    </strong>
 
-              <div className="d-flex text-muted pt-3">
-                <p className="pb-3 mb-0 small lh-sm border-bottom">
-                  <strong className="d-block text-gray-dark">
-                    <a
-                      className="purple-color"
-                      href="/users/{{comment.User.id}}"
-                    >
-                      commentor:
-                    </a>
-                  </strong>
-                  content
-                </p>
+                    {item.thoughts.map((t, i) => (
+                      <Thought key={i} i={i} t={t} />
+                    ))}
+                  </div>
+                </div>
               </div>
-
-              <button className="btn-comment btn-secondary">comment</button>
-              <div id="commentArea-{{@index}}"></div>
-            </div>
-          ))}
+            ))}
         </div>
       </main>
     </>

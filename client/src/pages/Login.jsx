@@ -3,7 +3,7 @@ import Cookie from "js-cookie";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import { useAppContext } from "../utils/AppContext";
 import { useEffect } from "react";
-import LogoSection from "../sections/LogoSection";
+import LogoSection from "../component/LogoSection";
 import { redirect, useNavigate } from "react-router-dom";
 
 const Login = () => {
