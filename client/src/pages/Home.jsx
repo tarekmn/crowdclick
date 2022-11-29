@@ -35,7 +35,7 @@ const Home = (props) => {
 
   useEffect(() => {
     const friendIds = appState.user.friends;
-    console.log(friendIds);
+    // console.log(friendIds);
 
     const justFriends = newUsers.filter((user, i) =>
       friendIds.includes(user.id)
@@ -45,7 +45,7 @@ const Home = (props) => {
   }, [newUsers]);
 
   useEffect(() => {
-    console.log(justFriends);
+    // console.log(justFriends);
   }, [justFriends]);
 
   return (
