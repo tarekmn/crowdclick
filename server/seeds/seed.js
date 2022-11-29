@@ -21,6 +21,7 @@ connection.once("open", async () => {
     "_id": "637e838129f498406df23181",
     "username": "Tarek",
     "email": "test@gmail.com",
+    "image": "stock4",
     "password": "test123",
   });
 
@@ -28,6 +29,7 @@ connection.once("open", async () => {
     "_id": "637e83995dd421603e3e8163",
     "username": "Ben",
     "email": "test2@gmail.com",
+    "image": "stock6",
     "password": "test123",
   });
 
@@ -35,6 +37,7 @@ connection.once("open", async () => {
     "_id": "637e83a133c49cd869012efc",
     "username": "Mike",
     "email": "test3@gmail.com",
+    "image": "stock8",
     "password": "test123",
   });
 
@@ -42,6 +45,7 @@ connection.once("open", async () => {
     "_id": "637e83a703d030945ab9fa60",
     "username": "Cindy",
     "email": "test4@gmail.com",
+    "image": "stock5",
     "password": "test123",
   });
 
@@ -49,6 +53,7 @@ connection.once("open", async () => {
     "_id": "637e83ad69e978780b94bd7d",
     "username": "Emma",
     "email": "test5@gmail.com",
+    "image": "stock12",
     "password": "test123",
   });
 

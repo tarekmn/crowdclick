@@ -22,6 +22,7 @@ const Home = (props) => {
         id: user._id,
         username: user.username,
         thoughts: user.thoughts,
+        image: user.image,
       };
     });
   };
@@ -35,25 +36,10 @@ const Home = (props) => {
   useEffect(() => {
     const friendIds = appState.user.friends;
     console.log(friendIds);
-    //returns  ["637e83995dd421603e3e8163",  "637e83a133c49cd869012efc", "637e83a703d030945ab9fa60"]
-    console.log(newUsers);
-    //returns [ {id: '637e838129f498406df23181', username: 'Tarek', thoughts: Array(1)}, {user 2}, etc]
 
     const justFriends = newUsers.filter((user, i) =>
       friendIds.includes(user.id)
     );
-
-    // const justFriends = newUsers.filter((users) =>
-    //   users.id.includes("637e83995dd421603e3e8163")
-    // );
-
-    console.log(justFriends);
-    //returns []   its empty
-
-    // console.log(justFriends2);
-    // //returns desired outcome for one person = [{id: '637e838129f498406df23181', username: 'Tarek', thoughts: Array(1)}]
-
-    // const justFriends = newUsers.some((user) => friendIds.includes(user.id));
 
     setJustFriends(justFriends);
   }, [newUsers]);
@@ -89,7 +75,7 @@ const Home = (props) => {
                 <div className="d-flex text-muted pt-3">
                   <img
                     className="postimg"
-                    src="{{post.User.image}}"
+                    src={`/stock/${item.image}.png`}
                     width="32"
                     height="32"
                   />

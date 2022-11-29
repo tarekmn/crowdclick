@@ -1,4 +1,9 @@
-const Profile = () => {
+import { useAppContext } from "../utils/AppContext";
+
+const Profile = (props) => {
+  const { appState } = useAppContext();
+
+  console.log(appState.user);
   return (
     <>
       <div className="padding">

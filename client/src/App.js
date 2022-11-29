@@ -40,7 +40,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home userData={userData} setUserData={setUserData} />} />
             <Route path="/friends" element={<Friends />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile userData={userData} setUserData={setUserData} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
 
