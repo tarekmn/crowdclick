@@ -109,9 +109,22 @@ connection.once("open", async () => {
     "thoughtId": "637e8488fc3c61679a9ff546",
   });
 
+  const reaction3 = await Reaction.create({
+    "reactionBody": "Yeah I heard.. I can’t believe you’re posting about it tho ",
+    "thoughtId": "637e8488fc3c61679a9ff546",
+  });
+
+
+
   await Thought.findOneAndUpdate(
     { _id: thought1._id },
     { $push: { reactions: reaction1._id }, },
+    { new: true }
+  )
+
+  await Thought.findOneAndUpdate(
+    { _id: thought2._id },
+    { $push: { reactions: reaction3._id }, },
     { new: true }
   )
 

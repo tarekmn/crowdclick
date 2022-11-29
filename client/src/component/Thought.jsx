@@ -4,11 +4,11 @@ const Thought = (props) => {
   return (
     <>
       <span>{props.t.thoughtText}</span>
-      <div className="d-flex text-muted pt-3">
-        {props.t.reactions.map((reaction, i) => {
-          return <Reaction key={i} reaction={reaction} />;
-        })}
-      </div>
+
+      {props.t.reactions.map((reaction, i) => {
+        console.log(i);
+        return <Reaction key={i} reaction={reaction} />;
+      })}
 
       <button className="btn-comment btn-secondary">comment</button>
       <div id="commentArea-{{@index}}"></div>
