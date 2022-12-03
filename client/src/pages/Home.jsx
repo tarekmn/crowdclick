@@ -61,7 +61,6 @@ const Home = (props) => {
     console.log(userThought);
     console.log();
     createThought();
-    updateUser();
   };
 
   return (
@@ -94,6 +93,18 @@ const Home = (props) => {
           {friendsAndMe.every((user) => user !== undefined) &&
             friendsAndMe
               .filter((f) => f.thoughts?.length > 0)
+              .map((user) => {
+                return user.thoughts.map((thought) => {
+                  console.log(thought.createdAt);
+                  return {
+                    thought: thought,
+                    image: user.image,
+                    name: user.username,
+                    age: thought.createdAt,
+                  };
+                });
+              })
+              .flat()
               .reverse()
               .map((item, i) => (
                 <div key={i}>
@@ -110,13 +121,11 @@ const Home = (props) => {
                           className="purple-color"
                           href="/users/{{post.User.id}}"
                         >
-                          {item.username}
+                          {item.name}
                         </a>
                       </strong>
 
-                      {item.thoughts.map((t, i) => (
-                        <Thought key={i} i={i} t={t} />
-                      ))}
+                      <Thought key={i} i={i} t={item.thought} />
                     </div>
                   </div>
                 </div>
