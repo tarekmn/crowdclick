@@ -12,9 +12,9 @@ import './App.css'
 
 function App() {
 
-  let section = "profile"
+
   const [userData, setUserData] = useState()
-  const [currSection, setCurrSection] = useState(section)
+  const [currSection, setCurrSection] = useState()
 
   const getUsers = async () => {
     const query = await fetch('/api/users', {

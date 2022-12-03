@@ -1,24 +1,24 @@
 import Reaction from "./Reaction";
 
-const Thought = (props) => {
+const Thought = ({ item }) => {
   return (
     <>
       <div className="d-flex text-muted pt-3">
         <img
           className="postimg"
-          src={`/stock/${props.item.image}.png`}
+          src={`/stock/${item.user.image}.png`}
           width="32"
           height="32"
         />
         <div className="pb-3 mb-0 small lh-sm border-bottom">
           <strong className="d-block text-gray-dark">
             <a className="purple-color" href="/users/{{post.User.id}}">
-              {props.item.name}
+              {item.user.username}
             </a>
           </strong>
-          <span>{props.t.thoughtText}</span>
+          <span>{item.thought.thoughtText}</span>
 
-          {props.t.reactions.map((reaction, i) => {
+          {item.thought.reactions.map((reaction, i) => {
             return <Reaction key={i} reaction={reaction} />;
           })}
 

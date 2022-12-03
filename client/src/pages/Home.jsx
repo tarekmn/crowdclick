@@ -8,7 +8,7 @@ const Home = (props) => {
 
   const friendsAndMe = [...justFriends, currentUser[0]];
   // console.log(currentUser[0]);
-  console.log(friendsAndMe);
+  // console.log(friendsAndMe);
 
   useEffect(() => {
     if (!appState || !appState.user) {
@@ -16,10 +16,10 @@ const Home = (props) => {
     }
   }, [appState]);
 
-  useEffect(() => {
-    console.log(justFriends);
-    console.log(appState.user._id);
-  }, [justFriends]);
+  // useEffect(() => {
+  //   console.log(justFriends);
+  //   console.log(appState.user._id);
+  // }, [justFriends]);
 
   // console.log(currentUser[0].thoughts);
 
@@ -98,20 +98,16 @@ const Home = (props) => {
                   console.log(thought.createdAt);
                   return {
                     thought: thought,
-                    image: user.image,
-                    name: user.username,
-                    age: thought.createdAt,
+                    user: user,
                   };
                 });
               })
               .flat()
-              .sort((a, b) => new Date(a.age) < new Date(b.age))
-              .map((item, i) => (
-                <div key={i}>
-                  {/* TODO: add to Thought*/}
-                  <Thought key={i} item={item} i={i} t={item.thought} />
-                </div>
-              ))}
+              .sort(
+                (a, b) =>
+                  new Date(a.thought.createdAt) < new Date(b.thought.createdAt)
+              )
+              .map((item, i) => <Thought key={i} item={item} i={i} />)}
         </div>
       </main>
     </>

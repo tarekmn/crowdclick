@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 const Section = () => {
   const { appState, justFriends, notFriends } = useAppContext();
 
-  console.log(appState.user._id);
-
   const removeFriend = async (e) => {
     const removeid = e.target.dataset.id;
 
