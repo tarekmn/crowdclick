@@ -91,9 +91,10 @@ const Home = (props) => {
             </button>
           </form>
 
-          {!friendsAndMe.some((user) => user === undefined) &&
+          {friendsAndMe.every((user) => user !== undefined) &&
             friendsAndMe
               .filter((f) => f.thoughts?.length > 0)
+              .reverse()
               .map((item, i) => (
                 <div key={i}>
                   <div className="d-flex text-muted pt-3">
