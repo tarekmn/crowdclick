@@ -1,10 +1,16 @@
 import { useAppContext } from "../utils/AppContext";
+import { useEffect, useState } from "react";
 
 const Section = () => {
   const { appState, justFriends, notFriends } = useAppContext();
 
-  console.log(justFriends);
-  console.log(notFriends);
+  useEffect(() => {
+    console.log(justFriends);
+  }, [justFriends]);
+
+  useEffect(() => {
+    console.log(justFriends);
+  }, [notFriends]);
 
   return (
     <>

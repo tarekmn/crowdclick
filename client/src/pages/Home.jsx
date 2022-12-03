@@ -4,7 +4,7 @@ import LogoSection from "../component/LogoSection";
 import Thought from "../component/Thought";
 
 const Home = (props) => {
-  const { appState } = useAppContext();
+  const { appState, justFriends } = useAppContext();
 
   useEffect(() => {
     if (!appState || !appState.user) {
@@ -12,40 +12,8 @@ const Home = (props) => {
     }
   }, [appState]);
 
-  const [newUsers, setNewUsers] = useState([]);
-  const [justFriends, setJustFriends] = useState([]);
-
-  // const { username, thoughts } = props.userData;
-  const condenseUsers = () => {
-    return props.userData.map((user) => {
-      return {
-        id: user._id,
-        username: user.username,
-        thoughts: user.thoughts,
-        image: user.image,
-      };
-    });
-  };
-
   useEffect(() => {
-    if (props.userData && props.userData.length && !newUsers.length) {
-      setNewUsers(condenseUsers());
-    }
-  }, [props.userData]);
-
-  useEffect(() => {
-    const friendIds = appState.user.friends;
-    // console.log(friendIds);
-
-    const justFriends = newUsers.filter((user, i) =>
-      friendIds.includes(user.id)
-    );
-
-    setJustFriends(justFriends);
-  }, [newUsers]);
-
-  useEffect(() => {
-    // console.log(justFriends);
+    console.log(justFriends);
   }, [justFriends]);
 
   return (
