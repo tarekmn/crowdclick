@@ -12,24 +12,6 @@ const Profile = (props) => {
   );
   console.log("currentUser : ", currentUser);
 
-  // useEffect(() => {
-  //   console.log(props.userData);
-
-  //   if (props.userData) {
-  //     const currentUser = props.userData.filter((users) =>
-  //       users._id.includes(`${appState.user._id}`)
-  //     );
-
-  //     setCurrentThoughts(currentUser);
-  //   }
-
-  //   // console.log(currentUser);
-  // }, [props.userData]);
-
-  // useEffect(() => {
-  //   console.log(currentThoughts);
-  // }, [currentThoughts]);
-  // console.log(currentThoughts);
   if (currentUser.length <= 0) {
     return <h1>Loading...</h1>;
   } else {
@@ -49,17 +31,6 @@ const Profile = (props) => {
               <div className="d-flex justify-content-center">
                 <h3 className="m-b-0">{currentUser[0].username}</h3>
               </div>
-
-              <div className="d-flex justify-content-center">
-                <a
-                  href=""
-                  className="m-t-10 waves-effect waves-dark btn btn-primary btn-md btn-rounded"
-                  data-id="whatever"
-                  id="follow"
-                >
-                  Follow
-                </a>
-              </div>
             </div>
           </div>
         </div>
@@ -69,21 +40,22 @@ const Profile = (props) => {
             Posts
           </h6>
         </div>
+
         <div className="mb-3 rounded shadow-sm d-flex justify-content-center">
           <div className="col-sm-12 col-md-6 rounded bg-light shadow-sm">
             <div className="d-flex text-muted pt-3">
               <img
                 className="postimg"
-                src="/images/arrow.jpg"
+                src={`/stock/${currentUser[0].image}.png`}
                 width="32"
                 height="32"
               />
 
               <p className="pb-3 mb-0 small lh-sm border-bottom">
                 <strong className="d-block text-gray-dark">
-                  Remember when you said...
+                  {currentUser[0].username}
                 </strong>
-                Content
+                {currentUser[0].thoughts[0].thoughtText}
               </p>
             </div>
 
@@ -96,7 +68,7 @@ const Profile = (props) => {
                   </a>
                   said...
                 </strong>
-                comment content
+                {currentUser[0].thoughts[0].reactions[0].reactionBody}
               </p>
             </div>
           </div>
