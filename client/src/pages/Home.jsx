@@ -108,28 +108,8 @@ const Home = (props) => {
               .sort((a, b) => new Date(a.age) < new Date(b.age))
               .map((item, i) => (
                 <div key={i}>
-                  {" "}
                   {/* TODO: add to Thought*/}
-                  <div className="d-flex text-muted pt-3">
-                    <img
-                      className="postimg"
-                      src={`/stock/${item.image}.png`}
-                      width="32"
-                      height="32"
-                    />
-                    <div className="pb-3 mb-0 small lh-sm border-bottom">
-                      <strong className="d-block text-gray-dark">
-                        <a
-                          className="purple-color"
-                          href="/users/{{post.User.id}}"
-                        >
-                          {item.name}
-                        </a>
-                      </strong>
-
-                      <Thought key={i} i={i} t={item.thought} />
-                    </div>
-                  </div>
+                  <Thought key={i} item={item} i={i} t={item.thought} />
                 </div>
               ))}
         </div>
