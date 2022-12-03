@@ -43,11 +43,11 @@ const AppProvider = (props) => {
 
 
   useEffect(() => {
-    console.log(justFriends);
+    // console.log(justFriends);
   }, [justFriends]);
 
   useEffect(() => {
-    console.log(notFriends);
+    // console.log(notFriends);
   }, [notFriends]);
 
 
