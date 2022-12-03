@@ -6,22 +6,33 @@ const Section = () => {
 
   console.log(appState.user._id);
 
-  useEffect(() => {
-    console.log(justFriends);
-  }, [justFriends]);
+  const removeFriend = async (e) => {
+    const removeid = e.target.dataset.id;
 
-  useEffect(() => {
-    console.log(notFriends);
-  }, [notFriends]);
-
-  const removeFriend = (e) => {
-    const id = e.target.dataset.id;
-    console.log(id);
+    const query = await fetch(`/api/users/removefriend/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        removeid,
+        currentid: appState.user._id,
+      }),
+    });
+    window.location.reload();
   };
 
-  const addFriend = (e) => {
-    const id = e.target.dataset.id;
-    console.log(id);
+  const addFriend = async (e) => {
+    const addid = e.target.dataset.id;
+
+    const query = await fetch(`/api/users/addfriend/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        addid,
+        currentid: appState.user._id,
+      }),
+    });
+
+    window.location.reload();
   };
 
   return (

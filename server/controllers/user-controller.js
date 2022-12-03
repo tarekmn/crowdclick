@@ -95,6 +95,53 @@ module.exports = {
   },
 
 
+  async removeFriend(req, res) {
+
+
+    console.log("HIT")
+    try {
+
+      const userId = req.body.currentid
+      const friendId = req.body.removeid
+
+      /** 
+       * We want to overwrite user.friends with
+       * user.friends.filter(f => f.id !=== friendId)
+       */
+      const data = await User.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { "friends": friendId } }
+      )
+      res.status(200).json(data)
+    } catch (error) {
+      console.log(error.message)
+      res.status(500).json(error)
+    }
+  },
+
+  async addFriend(req, res) {
+
+    try {
+
+      const userId = req.body.currentid
+      const friendId = req.body.addid
+
+      /** 
+       * We want to overwrite user.friends with
+       * user.friends.filter(f => f.id !=== friendId)
+       */
+      const data = await User.findOneAndUpdate(
+        { _id: userId },
+        { $push: { "friends": friendId } }
+      )
+      res.status(200).json(data)
+    } catch (error) {
+      console.log(error.message)
+      res.status(500).json(error)
+    }
+  },
+
+
   async deleteUser(req, res) {
     try {
       const data = await User.findOneAndRemove(
