@@ -17,10 +17,6 @@ const Navigation = (props) => {
     }
   }, [appState]);
 
-  useEffect(() => {}, [props.currSection]);
-
-  console.log(props.currSection);
-
   return (
     <>
       <Nav id="navBar" className="justify-content-end">

@@ -14,7 +14,35 @@ const Home = (props) => {
 
   useEffect(() => {
     console.log(justFriends);
+    console.log(appState.user._id);
   }, [justFriends]);
+
+  const [userThought, setUserThought] = useState({
+    thoughtText: "",
+    username: appState.user._id,
+  });
+  const [userReaction, setUserReaction] = useState({});
+
+  const createThought = async (req, res) => {
+    const queryThought = await fetch("/api/thoughts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        thoughtText: userThought.thoughtText,
+        username: userThought.username,
+      }),
+    });
+
+    console.log(queryThought);
+    // window.location.href = "/";
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log(userThought);
+    console.log();
+    createThought();
+  };
 
   return (
     <>
@@ -23,16 +51,23 @@ const Home = (props) => {
 
         <div className="my-3 p-3 bg-body bg-light rounded shadow-sm">
           <h6 className=" border-bottom pb-2 mb-0">Recent updates</h6>
-          <form id="post-form">
+          <form id="post-form" onSubmit={handleFormSubmit}>
             <div className="form-group">
               <textarea
-                name="content1"
+                name="thoughtText"
                 id="post-content2"
                 className="post-content2 mytextarea2 col-12"
+                value={userThought.thoughtText}
+                onChange={(e) =>
+                  setUserThought({
+                    ...userThought,
+                    [e.target.name]: e.target.value,
+                  })
+                }
               ></textarea>
             </div>
             <button type="submit" className="btn btn-primary">
-              Submit
+              Post
             </button>
           </form>
 

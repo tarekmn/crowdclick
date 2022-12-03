@@ -56,9 +56,11 @@ const Profile = (props) => {
             <div className="d-flex text-muted pt-3">
               <p className="pb-3 mb-0 small lh-sm border-bottom">
                 <strong className="d-block text-gray-dark">
-                  {currentUser[0].thoughts[0].reactions[0].username}
+                  {/* {currentUser[0].thoughts[0].reactions[0].username &&
+                    currentUser[0].thoughts[0].reactions[0].username} */}
                 </strong>
-                {currentUser[0].thoughts[0].reactions[0].reactionBody}
+                {/* {currentUser[0].thoughts[0].reactions[0].reactionBody &&
+                  currentUser[0].thoughts[0].reactions[0].reactionBody} */}
               </p>
             </div>
           </div>
