@@ -12,9 +12,9 @@ import './App.css'
 
 function App() {
 
+  let section = "profile"
   const [userData, setUserData] = useState()
-
-
+  const [currSection, setCurrSection] = useState(section)
 
   const getUsers = async () => {
     const query = await fetch('/api/users', {
@@ -32,10 +32,12 @@ function App() {
 
 
 
+
   return (
     <div >
       <AppProvider userData={userData} setUserData={setUserData} value={{}}>
-        <Navigation />
+        <Navigation currSection={currSection}
+          setCurrSection={setCurrSection} />
         <BrowserRouter >
           <Routes>
             <Route path="/" element={<Home userData={userData} setUserData={setUserData} />} />
