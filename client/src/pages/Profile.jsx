@@ -2,15 +2,9 @@ import { useAppContext } from "../utils/AppContext";
 import { useEffect, useState } from "react";
 
 const Profile = (props) => {
-  const { appState } = useAppContext();
-  const [currentThoughts, setCurrentThoughts] = useState([]);
-  // console.log(props.userData);
-  const singleUser = props.userData ? props.userData : [];
-  console.log("This is single USER : ", singleUser);
-  const currentUser = singleUser.filter((users) =>
-    users._id.includes(`${appState.user._id}`)
-  );
-  console.log("currentUser : ", currentUser);
+  const { appState, currentUser } = useAppContext();
+
+  console.log(currentUser);
 
   if (currentUser.length <= 0) {
     return <h1>Loading...</h1>;
@@ -62,11 +56,7 @@ const Profile = (props) => {
             <div className="d-flex text-muted pt-3">
               <p className="pb-3 mb-0 small lh-sm border-bottom">
                 <strong className="d-block text-gray-dark">
-                  And then
-                  <a className="purple-color" href="/users/{{comment.User.id}}">
-                    commenters first name
-                  </a>
-                  said...
+                  {currentUser[0].thoughts[0].reactions[0].username}
                 </strong>
                 {currentUser[0].thoughts[0].reactions[0].reactionBody}
               </p>

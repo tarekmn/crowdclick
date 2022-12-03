@@ -4,7 +4,7 @@ const Reaction = (props) => {
       <p className="pb-3 mb-0 small lh-sm border-bottom">
         <strong className="d-block text-gray-dark">
           <a className="purple-color" href="/users/{{comment.User.id}}">
-            commentor:
+            {props.reaction.username}
           </a>
         </strong>
         {props.reaction.reactionBody}
