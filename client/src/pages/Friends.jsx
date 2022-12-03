@@ -4,13 +4,25 @@ import { useEffect, useState } from "react";
 const Section = () => {
   const { appState, justFriends, notFriends } = useAppContext();
 
+  console.log(appState.user._id);
+
   useEffect(() => {
     console.log(justFriends);
   }, [justFriends]);
 
   useEffect(() => {
-    console.log(justFriends);
+    console.log(notFriends);
   }, [notFriends]);
+
+  const removeFriend = (e) => {
+    const id = e.target.dataset.id;
+    console.log(id);
+  };
+
+  const addFriend = (e) => {
+    const id = e.target.dataset.id;
+    console.log(id);
+  };
 
   return (
     <>
@@ -46,9 +58,9 @@ const Section = () => {
                       <strong className="text-gray-dark">
                         {item.username}
                       </strong>
-                      <a className="purple-color" href="/users/{{friend.id}}">
+                      <button data-id={item.id} onClick={removeFriend}>
                         Remove Friend
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -75,9 +87,9 @@ const Section = () => {
                       <strong className="text-gray-dark">
                         {item.username}
                       </strong>
-                      <a className="purple-color" href="/users/{{friend.id}}">
+                      <button data-id={item.id} onClick={addFriend}>
                         Add Friend
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>

@@ -30,7 +30,7 @@ const AppProvider = (props) => {
       );
 
       const notFriendsV = allUsers.filter((user, i) =>
-        !friendIds.includes(user.id)
+        !friendIds.includes(user.id) && user.id !== currentUserID
       );
 
       setJustFriends(justFriendsV)

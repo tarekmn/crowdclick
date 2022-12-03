@@ -4,7 +4,11 @@ import LogoSection from "../component/LogoSection";
 import Thought from "../component/Thought";
 
 const Home = (props) => {
-  const { appState, justFriends } = useAppContext();
+  const { appState, justFriends, currentUser } = useAppContext();
+
+  const friendsAndMe = [...justFriends, currentUser[0]];
+  // console.log(currentUser[0]);
+  console.log(friendsAndMe);
 
   useEffect(() => {
     if (!appState || !appState.user) {
@@ -16,6 +20,8 @@ const Home = (props) => {
     console.log(justFriends);
     console.log(appState.user._id);
   }, [justFriends]);
+
+  // console.log(currentUser[0].thoughts);
 
   const [userThought, setUserThought] = useState({
     thoughtText: "",
@@ -37,11 +43,25 @@ const Home = (props) => {
     // window.location.href = "/";
   };
 
+  const updateUser = async (req, res) => {
+    const queryUser = await fetch(`/api/users/${appState.user._id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        thoughts: "638bae5937f3d6d1fb5e57ad",
+      }),
+    });
+
+    console.log(queryUser);
+    // window.location.href = "/";
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log(userThought);
     console.log();
     createThought();
+    updateUser();
   };
 
   return (
@@ -71,34 +91,35 @@ const Home = (props) => {
             </button>
           </form>
 
-          {justFriends
-            .filter((f) => f.thoughts.length > 0)
-            .map((item, i) => (
-              <div key={i}>
-                <div className="d-flex text-muted pt-3">
-                  <img
-                    className="postimg"
-                    src={`/stock/${item.image}.png`}
-                    width="32"
-                    height="32"
-                  />
-                  <div className="pb-3 mb-0 small lh-sm border-bottom">
-                    <strong className="d-block text-gray-dark">
-                      <a
-                        className="purple-color"
-                        href="/users/{{post.User.id}}"
-                      >
-                        {item.username}
-                      </a>
-                    </strong>
+          {!friendsAndMe.some((user) => user === undefined) &&
+            friendsAndMe
+              .filter((f) => f.thoughts?.length > 0)
+              .map((item, i) => (
+                <div key={i}>
+                  <div className="d-flex text-muted pt-3">
+                    <img
+                      className="postimg"
+                      src={`/stock/${item.image}.png`}
+                      width="32"
+                      height="32"
+                    />
+                    <div className="pb-3 mb-0 small lh-sm border-bottom">
+                      <strong className="d-block text-gray-dark">
+                        <a
+                          className="purple-color"
+                          href="/users/{{post.User.id}}"
+                        >
+                          {item.username}
+                        </a>
+                      </strong>
 
-                    {item.thoughts.map((t, i) => (
-                      <Thought key={i} i={i} t={t} />
-                    ))}
+                      {item.thoughts.map((t, i) => (
+                        <Thought key={i} i={i} t={t} />
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
         </div>
       </main>
     </>
