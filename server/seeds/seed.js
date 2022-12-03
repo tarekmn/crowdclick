@@ -97,7 +97,13 @@ connection.once("open", async () => {
 
   await User.findOneAndUpdate(
     { _id: user2._id },
-    { $push: { thoughts: thought2._id, friends: [{ "_id": "637e838129f498406df23181" }, { "_id": "637e83a133c49cd869012efc" }, { "_id": "637e83ad69e978780b94bd7d" }] }, },
+    { $push: { thoughts: thought3._id, friends: [{ "_id": "637e838129f498406df23181" }, { "_id": "637e83a133c49cd869012efc" }, { "_id": "637e83ad69e978780b94bd7d" }] }, },
+    { new: true }
+  )
+
+  await User.findOneAndUpdate(
+    { _id: user3._id },
+    { $push: { thoughts: thought2._id, friends: [{ "_id": "637e838129f498406df23181" }, { "_id": "637e83995dd421603e3e8163" }, { "_id": "637e83a703d030945ab9fa60" }] }, },
     { new: true }
   )
 
@@ -107,17 +113,29 @@ connection.once("open", async () => {
   const reaction1 = await Reaction.create({
     "reactionBody": "Let's move to Florida!",
     "thoughtId": "637e84828a5781cb962de5b5",
+    "username": "637e83a133c49cd869012efc",
+
   });
 
   const reaction2 = await Reaction.create({
     "reactionBody": "No! What happened?!",
     "thoughtId": "637e8488fc3c61679a9ff546",
+    "username": "637e838129f498406df23181",
   });
 
   const reaction3 = await Reaction.create({
     "reactionBody": "Yeah I heard.. I can’t believe you’re posting about it tho ",
     "thoughtId": "637e8488fc3c61679a9ff546",
+    "username": "637e83995dd421603e3e8163",
   });
+
+  const reaction4 = await Reaction.create({
+    "reactionBody": "Watch the NFL instead",
+    "thoughtId": "637e848c220defaa683bca65",
+    "username": "637e838129f498406df23181",
+  });
+
+
 
 
 
@@ -139,6 +157,11 @@ connection.once("open", async () => {
     { new: true }
   )
 
+  await Thought.findOneAndUpdate(
+    { _id: thought3._id },
+    { $push: { reactions: reaction4._id }, },
+    { new: true }
+  )
 
   // Log out the seed data to indicate what should appear in the database
   console.table(User);
