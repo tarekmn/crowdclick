@@ -105,9 +105,11 @@ const Home = (props) => {
                 });
               })
               .flat()
-              .reverse()
+              .sort((a, b) => new Date(a.age) < new Date(b.age))
               .map((item, i) => (
                 <div key={i}>
+                  {" "}
+                  {/* TODO: add to Thought*/}
                   <div className="d-flex text-muted pt-3">
                     <img
                       className="postimg"

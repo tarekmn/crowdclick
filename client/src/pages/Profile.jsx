@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const Profile = (props) => {
   const { appState, currentUser } = useAppContext();
 
-  console.log(currentUser);
+  console.log(currentUser[0]);
 
   if (currentUser.length <= 0) {
     return <h1>Loading...</h1>;
