@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div >
-      <AppProvider value={{}}>
+      <AppProvider userData={userData} setUserData={setUserData} value={{}}>
         <Navigation />
         <BrowserRouter >
           <Routes>

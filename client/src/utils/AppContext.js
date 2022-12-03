@@ -7,7 +7,51 @@ export const useAppContext = () => useContext(AppContext)
 
 const AppProvider = (props) => {
   const [appState, setAppState] = useState({ user: null });
-  const [appReady, setAppReady] = useState(false)
+  const [appReady, setAppReady] = useState(false);
+  const [justFriends, setJustFriends] = useState([]);
+  const [notFriends, setNotFriends] = useState([]);
+
+
+
+
+  useEffect(() => {
+
+    if (appState.user && props.userData) {
+      const currentUserID = appState.user._id
+      const allUsers = props.userData
+      const friendIds = appState.user.friends;
+      // console.log(currentUserID)
+      // console.log(allUsers)
+      // console.log(friendIds)
+
+      const currentUser = allUsers.filter(user => user.id.includes(currentUserID))
+
+      const justFriendsV = allUsers.filter((user, i) =>
+        friendIds.includes(user.id)
+      );
+
+      const notFriendsV = allUsers.filter((user, i) =>
+        !friendIds.includes(user.id)
+      );
+
+      setJustFriends(justFriendsV)
+      setNotFriends(notFriendsV)
+
+    }
+
+  }, [appState.user]);
+
+
+  useEffect(() => {
+    console.log(justFriends);
+  }, [justFriends]);
+
+  useEffect(() => {
+    console.log(notFriends);
+  }, [notFriends]);
+
+
+
 
   const lookupUser = async () => {
     const authCheck = await fetch("/api/users/lookup")
@@ -32,7 +76,7 @@ const AppProvider = (props) => {
   return (
     <>
       {appReady === true && (
-        <AppContext.Provider value={{ appState, setAppState, lookupUser, logout }}>
+        <AppContext.Provider value={{ appState, setAppState, lookupUser, logout, justFriends, notFriends }}>
           {props.children}
         </AppContext.Provider>
       )}

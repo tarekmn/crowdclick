@@ -6,7 +6,6 @@ const Thought = (props) => {
       <span>{props.t.thoughtText}</span>
 
       {props.t.reactions.map((reaction, i) => {
-        console.log(i);
         return <Reaction key={i} reaction={reaction} />;
       })}
 
