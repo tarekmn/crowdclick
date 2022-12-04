@@ -44,19 +44,6 @@ const AppProvider = (props) => {
   }, [appState.user]);
 
 
-  // useEffect(() => {
-  //   // console.log(justFriends);
-  // }, [justFriends]);
-
-  // useEffect(() => {
-  //   // console.log(notFriends);
-  // }, [notFriends]);
-
-  // useEffect(() => {
-  //   console.log(currentUser)
-  // }, [currentUser]);
-
-
 
 
   const lookupUser = async () => {

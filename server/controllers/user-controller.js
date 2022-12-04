@@ -60,7 +60,7 @@ module.exports = {
           model: "Reaction"
         }
       }).populate('friends')
-      console.log(user)
+
       if (!user) {
         return res.status(404).json({ message: 'No users in db with that ID' })
       }
@@ -97,8 +97,6 @@ module.exports = {
 
   async removeFriend(req, res) {
 
-
-    console.log("HIT")
     try {
 
       const userId = req.body.currentid

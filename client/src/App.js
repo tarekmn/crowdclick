@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from "react"
-import { BrowserRouter, Route, Routes, HashRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { AppProvider } from "./utils/AppContext"
 import Navigation from './pages/Navigation.jsx';
 import Login from './pages/Login';
@@ -27,7 +27,6 @@ function App() {
 
   useEffect(() => {
     getUsers()
-    // console.log(userData)
   }, [])
 
 

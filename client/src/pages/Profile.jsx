@@ -1,11 +1,8 @@
 import { useAppContext } from "../utils/AppContext";
-import { useEffect, useState } from "react";
 import Thought from "../component/Thought";
 
 const Profile = (props) => {
-  const { appState, currentUser } = useAppContext();
-
-  console.log(currentUser[0]);
+  const { currentUser } = useAppContext();
 
   if (currentUser.length <= 0) {
     return <h1>Loading...</h1>;

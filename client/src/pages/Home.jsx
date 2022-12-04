@@ -7,8 +7,6 @@ const Home = (props) => {
   const { appState, justFriends, currentUser } = useAppContext();
 
   const friendsAndMe = [...justFriends, currentUser[0]];
-  // console.log(currentUser[0]);
-  // console.log(friendsAndMe);
 
   useEffect(() => {
     if (!appState || !appState.user) {
@@ -16,21 +14,13 @@ const Home = (props) => {
     }
   }, [appState]);
 
-  useEffect(() => {
-    console.log(justFriends);
-    // console.log(appState.user._id);
-  }, [justFriends]);
-
-  // console.log(currentUser[0].thoughts);
-
   const [userThought, setUserThought] = useState({
     thoughtText: "",
     username: appState.user._id,
   });
-  const [userReaction, setUserReaction] = useState({});
 
   const createThought = async (req, res) => {
-    const queryThought = await fetch("/api/thoughts", {
+    await fetch("/api/thoughts", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -39,27 +29,11 @@ const Home = (props) => {
       }),
     });
 
-    console.log(queryThought);
-    // window.location.href = "/";
-  };
-
-  const updateUser = async (req, res) => {
-    const queryUser = await fetch(`/api/users/${appState.user._id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        thoughts: "638bae5937f3d6d1fb5e57ad",
-      }),
-    });
-
-    console.log(queryUser);
-    // window.location.href = "/";
+    window.location.href = "/";
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(userThought);
-    console.log();
     createThought();
   };
 
@@ -95,7 +69,6 @@ const Home = (props) => {
               .filter((f) => f.thoughts?.length > 0)
               .map((user) => {
                 return user.thoughts.map((thought) => {
-                  console.log(thought.createdAt);
                   return {
                     thought: thought,
                     user: user,

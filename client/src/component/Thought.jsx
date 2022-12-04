@@ -7,14 +7,13 @@ const Thought = ({ item }) => {
 
   const renderComment = (e) => {
     e.preventDefault();
-    if (commenting) {
+    if (commenting && comment.length > 0) {
       // submit comment
+      console.log({ comment });
     }
 
     setCommenting(!commenting);
   };
-
-  console.log(comment);
 
   return (
     <>
@@ -22,6 +21,7 @@ const Thought = ({ item }) => {
         <img
           className="postimg"
           src={`/stock/${item.user.image}.png`}
+          alt="user smiling"
           width="32"
           height="32"
         />

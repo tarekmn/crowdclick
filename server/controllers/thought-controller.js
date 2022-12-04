@@ -36,7 +36,7 @@ module.exports = {
   },
 
   async createThought(req, res) {
-    console.log("HIT")
+
     try {
 
       const data = await Thought.create(req.body)

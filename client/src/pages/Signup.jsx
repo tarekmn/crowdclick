@@ -1,13 +1,8 @@
 import { useState } from "react";
-import Cookie from "js-cookie";
 import { Button, Container, Form } from "react-bootstrap";
-import { useAppContext } from "../utils/AppContext";
 import LogoSection from "../component/LogoSection";
-import { redirect, useNavigate } from "react-router-dom";
 
 const Signup = () => {
-  const { appState, setAppState } = useAppContext();
-
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
@@ -15,7 +10,7 @@ const Signup = () => {
   });
 
   const createUser = async (req, res) => {
-    const query = await fetch("/api/users", {
+    await fetch("/api/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -25,14 +20,11 @@ const Signup = () => {
       }),
     });
 
-    console.log(query);
     window.location.href = "/";
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(newUser);
-
     createUser();
   };
 

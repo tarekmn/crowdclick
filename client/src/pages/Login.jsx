@@ -4,7 +4,7 @@ import { Alert, Button, Container, Form } from "react-bootstrap";
 import { useAppContext } from "../utils/AppContext";
 import { useEffect } from "react";
 import LogoSection from "../component/LogoSection";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { appState, setAppState } = useAppContext();
@@ -15,7 +15,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setFormMessage({ type: "", msg: "" });
-    console.log(loginCreds);
+
     const authCheck = await fetch("/api/users/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -50,7 +50,6 @@ const Login = () => {
   useEffect(() => {
     if (appState && appState.user) {
       window.location.href = "/";
-      console.log(appState);
     }
   }, [appState]);
 
