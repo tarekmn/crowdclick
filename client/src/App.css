@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-link {
+  font-size: large;
+  color: red;
+}
+
+#selectedPage,
+.nav-link:hover {
+  color: white;
+  background-color: red;
+}
