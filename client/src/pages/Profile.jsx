@@ -13,14 +13,14 @@ const Profile = (props) => {
           <div className="d-flex justify-content-center">
             <img
               className="mb-4 mt-4 profile-pic"
-              src={`/stock/${currentUser[0].image}.png`}
+              src={`/stock/${currentUser.image}.png`}
               alt="user"
               width="20%"
             />
           </div>
           <div className="container">
             <div className="d-flex justify-content-center">
-              <h3 className="m-b-0">{currentUser[0].username}</h3>
+              <h3 className="m-b-0">{currentUser.username}</h3>
             </div>
           </div>
         </div>
@@ -32,8 +32,8 @@ const Profile = (props) => {
         </h6>
       </div>
 
-      {currentUser[0].thoughts.map((thought, i) => {
-        const item = { thought, user: currentUser[0] };
+      {currentUser.thoughts.map((thought, i) => {
+        const item = { thought, user: currentUser };
         return <Thought key={i} item={item} i={i} />;
       })}
     </>

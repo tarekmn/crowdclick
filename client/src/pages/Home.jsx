@@ -6,7 +6,7 @@ import Thought from "../component/Thought";
 const Home = (props) => {
   const { appState, justFriends, currentUser } = useAppContext();
 
-  const friendsAndMe = [...justFriends, currentUser[0]];
+  const friendsAndMe = [...justFriends, currentUser];
 
   useEffect(() => {
     if (!appState || !appState.user) {

@@ -12,18 +12,35 @@ const AppProvider = (props) => {
   const [notFriends, setNotFriends] = useState([]);
   const [currentUser, setCurrentUser] = useState([]);
 
+  const [userData, setUserData] = useState()
+
+
+  const getUsers = async () => {
+    const query = await fetch('/api/users', {
+      method: 'GET'
+    })
+    const response = await query.json()
+    setUserData(response)
+    console.log("In getUsers: userData is set")
+  }
+
+
+  useEffect(() => {
+    getUsers()
+  }, [])
+
 
 
 
 
   useEffect(() => {
 
-    if (appState.user && props.userData) {
+    if (appState.user && userData) {
       const currentUserID = appState.user._id
-      const allUsers = props.userData
+      const allUsers = userData
       const friendIds = appState.user.friends;
 
-      const currentUser = allUsers.filter(user => user.id.includes(currentUserID))
+      const currentUser = allUsers.filter(user => user.id.includes(currentUserID))[0]
 
       const justFriendsV = allUsers.filter((user, i) =>
         friendIds.includes(user.id)
