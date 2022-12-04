@@ -105,7 +105,7 @@ const Home = (props) => {
               .flat()
               .sort(
                 (a, b) =>
-                  new Date(a.thought.createdAt) < new Date(b.thought.createdAt)
+                  new Date(b.thought.createdAt) - new Date(a.thought.createdAt)
               )
               .map((item, i) => <Thought key={i} item={item} i={i} />)}
         </div>
