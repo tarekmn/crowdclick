@@ -1,5 +1,4 @@
 import { useAppContext } from "../utils/AppContext";
-import { useEffect, useState } from "react";
 
 const Section = () => {
   const { appState, justFriends, notFriends } = useAppContext();
@@ -7,7 +6,7 @@ const Section = () => {
   const removeFriend = async (e) => {
     const removeid = e.target.dataset.id;
 
-    const query = await fetch(`/api/users/removefriend/`, {
+    await fetch(`/api/users/removefriend/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -21,7 +20,7 @@ const Section = () => {
   const addFriend = async (e) => {
     const addid = e.target.dataset.id;
 
-    const query = await fetch(`/api/users/addfriend/`, {
+    await fetch(`/api/users/addfriend/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -58,6 +57,7 @@ const Section = () => {
                   <img
                     className="postimg"
                     src={`/stock/${item.image}.png`}
+                    alt="similing person"
                     width="32"
                     height="32"
                   />
@@ -88,6 +88,7 @@ const Section = () => {
                     className="postimg"
                     src={`/stock/${item.image}.png`}
                     width="32"
+                    alt="similingperson"
                     height="32"
                   />
 
