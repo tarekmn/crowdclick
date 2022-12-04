@@ -15,8 +15,13 @@ const reactionSchema = new Schema(
       ref: "Thought",
       required: true,
     },
-    username: {
+    userId: {
       type: Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    username: {
+      type: String,
       ref: "User",
       required: true,
     },

@@ -1,6 +1,21 @@
 import Reaction from "./Reaction";
+import { useState } from "react";
 
 const Thought = ({ item }) => {
+  const [commenting, setCommenting] = useState(false);
+  const [comment, setComment] = useState("");
+
+  const renderComment = (e) => {
+    e.preventDefault();
+    if (commenting) {
+      // submit comment
+    }
+
+    setCommenting(!commenting);
+  };
+
+  console.log(comment);
+
   return (
     <>
       <div className="d-flex text-muted pt-3">
@@ -22,8 +37,15 @@ const Thought = ({ item }) => {
             return <Reaction key={i} reaction={reaction} />;
           })}
 
-          <button className="btn-comment btn-secondary">comment</button>
-          <div id="commentArea-{{@index}}"></div>
+          {commenting && (
+            <textarea onChange={(e) => setComment(e.target.value)}></textarea>
+          )}
+
+          <button className="btn btn-primary" onClick={renderComment}>
+            comment
+          </button>
+
+          <div></div>
         </div>
       </div>
     </>

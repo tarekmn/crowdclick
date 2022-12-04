@@ -16,10 +16,10 @@ const Home = (props) => {
     }
   }, [appState]);
 
-  // useEffect(() => {
-  //   console.log(justFriends);
-  //   console.log(appState.user._id);
-  // }, [justFriends]);
+  useEffect(() => {
+    console.log(justFriends);
+    // console.log(appState.user._id);
+  }, [justFriends]);
 
   // console.log(currentUser[0].thoughts);
 

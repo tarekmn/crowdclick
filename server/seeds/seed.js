@@ -113,26 +113,30 @@ connection.once("open", async () => {
   const reaction1 = await Reaction.create({
     "reactionBody": "Let's move to Florida!",
     "thoughtId": "637e84828a5781cb962de5b5",
-    "username": "637e83a133c49cd869012efc",
+    "userId": "637e83a133c49cd869012efc",
+    "username": "Mike",
 
   });
 
   const reaction2 = await Reaction.create({
     "reactionBody": "No! What happened?!",
     "thoughtId": "637e8488fc3c61679a9ff546",
-    "username": "637e838129f498406df23181",
+    "userId": "637e838129f498406df23181",
+    "username": "Tarek",
   });
 
   const reaction3 = await Reaction.create({
     "reactionBody": "Yeah I heard.. I can’t believe you’re posting about it tho ",
     "thoughtId": "637e8488fc3c61679a9ff546",
-    "username": "637e83995dd421603e3e8163",
+    "userId": "637e83995dd421603e3e8163",
+    "username": "Ben",
   });
 
   const reaction4 = await Reaction.create({
     "reactionBody": "Watch the NFL instead",
     "thoughtId": "637e848c220defaa683bca65",
-    "username": "637e838129f498406df23181",
+    "userId": "637e83ad69e978780b94bd7d",
+    "username": "Emma",
   });
 
 
