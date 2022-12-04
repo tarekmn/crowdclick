@@ -13,34 +13,21 @@ import './App.css'
 function App() {
 
 
-  const [userData, setUserData] = useState()
 
-
-  const getUsers = async () => {
-    const query = await fetch('/api/users', {
-      method: 'GET'
-    })
-    const response = await query.json()
-    setUserData(response)
-  }
-
-
-  useEffect(() => {
-    getUsers()
-  }, [])
 
 
 
 
   return (
     <div >
-      <AppProvider userData={userData} setUserData={setUserData} value={{}}>
+      <AppProvider value={{}}>
+        {/* <AppProvider userData={userData} setUserData={setUserData} value={{}}> */}
         <Navigation />
         <BrowserRouter >
           <Routes>
-            <Route path="/" element={<Home userData={userData} setUserData={setUserData} />} />
+            <Route path="/" element={<Home />} />
             <Route path="/friends" element={<Friends />} />
-            <Route path="/profile" element={<Profile userData={userData} setUserData={setUserData} />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
 
