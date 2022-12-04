@@ -1,10 +1,11 @@
 import { useAppContext } from "../utils/AppContext";
 import { useEffect, useState } from "react";
+import Thought from "../component/Thought";
 
 const Profile = (props) => {
   const { appState, currentUser } = useAppContext();
 
-  console.log(currentUser);
+  console.log(currentUser[0]);
 
   if (currentUser.length <= 0) {
     return <h1>Loading...</h1>;
@@ -35,34 +36,10 @@ const Profile = (props) => {
           </h6>
         </div>
 
-        <div className="mb-3 rounded shadow-sm d-flex justify-content-center">
-          <div className="col-sm-12 col-md-6 rounded bg-light shadow-sm">
-            <div className="d-flex text-muted pt-3">
-              <img
-                className="postimg"
-                src={`/stock/${currentUser[0].image}.png`}
-                width="32"
-                height="32"
-              />
-
-              <p className="pb-3 mb-0 small lh-sm border-bottom">
-                <strong className="d-block text-gray-dark">
-                  {currentUser[0].username}
-                </strong>
-                {currentUser[0].thoughts[0].thoughtText}
-              </p>
-            </div>
-
-            <div className="d-flex text-muted pt-3">
-              <p className="pb-3 mb-0 small lh-sm border-bottom">
-                <strong className="d-block text-gray-dark">
-                  {currentUser[0].thoughts[0].reactions[0].username}
-                </strong>
-                {currentUser[0].thoughts[0].reactions[0].reactionBody}
-              </p>
-            </div>
-          </div>
-        </div>
+        {currentUser[0].thoughts.map((thought, i) => {
+          const item = { thought, user: currentUser[0] };
+          return <Thought key={i} item={item} i={i} />;
+        })}
       </>
     );
   }

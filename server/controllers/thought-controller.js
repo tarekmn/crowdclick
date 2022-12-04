@@ -36,8 +36,19 @@ module.exports = {
   },
 
   async createThought(req, res) {
+    console.log("HIT")
     try {
+
       const data = await Thought.create(req.body)
+
+      const updateUser = await User.findByIdAndUpdate(
+        { _id: req.body.username },
+        { $push: { "thoughts": data } }
+
+      )
+
+
+
       res.status(200).json(data)
     } catch (error) {
       console.log(error.message)

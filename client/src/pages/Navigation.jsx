@@ -17,6 +17,11 @@ const Navigation = (props) => {
     }
   }, [appState]);
 
+  console.log(props.currSection);
+  let foo = window.location.href.split("/").pop();
+  foo = foo === "" ? "home" : foo;
+  console.log({ foo });
+
   return (
     <>
       <Nav id="navBar" className="justify-content-end">

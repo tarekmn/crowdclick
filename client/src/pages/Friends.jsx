@@ -4,13 +4,34 @@ import { useEffect, useState } from "react";
 const Section = () => {
   const { appState, justFriends, notFriends } = useAppContext();
 
-  useEffect(() => {
-    console.log(justFriends);
-  }, [justFriends]);
+  const removeFriend = async (e) => {
+    const removeid = e.target.dataset.id;
 
-  useEffect(() => {
-    console.log(justFriends);
-  }, [notFriends]);
+    const query = await fetch(`/api/users/removefriend/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        removeid,
+        currentid: appState.user._id,
+      }),
+    });
+    window.location.reload(); // FIXME
+  };
+
+  const addFriend = async (e) => {
+    const addid = e.target.dataset.id;
+
+    const query = await fetch(`/api/users/addfriend/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        addid,
+        currentid: appState.user._id,
+      }),
+    });
+
+    window.location.reload(); // FIXME
+  };
 
   return (
     <>
@@ -46,9 +67,9 @@ const Section = () => {
                       <strong className="text-gray-dark">
                         {item.username}
                       </strong>
-                      <a className="purple-color" href="/users/{{friend.id}}">
+                      <button data-id={item.id} onClick={removeFriend}>
                         Remove Friend
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -75,9 +96,9 @@ const Section = () => {
                       <strong className="text-gray-dark">
                         {item.username}
                       </strong>
-                      <a className="purple-color" href="/users/{{friend.id}}">
+                      <button data-id={item.id} onClick={addFriend}>
                         Add Friend
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>
