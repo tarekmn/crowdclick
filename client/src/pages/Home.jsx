@@ -16,7 +16,6 @@ const Home = (props) => {
 
   const [userThought, setUserThought] = useState({
     thoughtText: "",
-    username: appState.user._id,
   });
 
   const createThought = async (req, res) => {
@@ -25,7 +24,7 @@ const Home = (props) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         thoughtText: userThought.thoughtText,
-        username: userThought.username,
+        username: appState.user._id,
       }),
     });
 
