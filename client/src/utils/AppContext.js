@@ -58,7 +58,7 @@ const AppProvider = (props) => {
 
     }
 
-  }, [appState.user]);
+  }, [userData]);
 
 
 
