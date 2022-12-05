@@ -60,13 +60,28 @@ img {
   background-color: red;
   color: white;
   font-size: large;
-  border-radius: 15%;
+  border-radius: 10%;
   border: 1px white solid;
 }
 
 .postBtn:hover {
   background-color: white;
   color: red;
-  border-radius: 15%;
+  border-radius: 10%;
+  border: 1px red solid;
+}
+
+.signupBtn:hover {
+  background-color: red;
+  color: white;
+  font-size: large;
+  border-radius: 10%;
+  border: 1px white solid;
+}
+
+.signupBtn {
+  background-color: white;
+  color: red;
+  border-radius: 10%;
   border: 1px red solid;
 }

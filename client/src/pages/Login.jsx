@@ -88,12 +88,13 @@ const Login = () => {
               }
             />
           </Form.Group>
-          <Button variant="danger" type="submit">
+          <Button className="postBtn" type="submit">
             Submit
           </Button>{" "}
           {"      "}
           <Button
-            variant="outline-danger"
+            // variant="outline-danger"
+            className="signupBtn"
             type="click"
             onClick={navigateToSignUp}
           >
