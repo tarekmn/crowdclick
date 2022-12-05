@@ -71,8 +71,6 @@ module.exports = {
 
 
   async addLiker(req, res) {
-
-    console.log("HIT")
     try {
       const data = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },
