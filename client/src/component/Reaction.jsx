@@ -1,14 +1,22 @@
 const Reaction = (props) => {
+  const containerClass = "d-flex text-muted pt-3";
+  const innerClass = "pb-3 mb-0 small lh-sm border-bottom";
+  const strongClass = "d-block text-gray-dark";
+
+  const reactionStyle = {
+    fontSize: "small",
+    color: "black",
+    marginBottom: 0,
+  };
+
   return (
-    <div className="d-flex text-muted pt-3">
-      <p className="pb-3 mb-0 small lh-sm border-bottom">
-        <strong className="d-block text-gray-dark">
-          <a className="purple-color" href="/users/{{comment.User.id}}">
-            {props.reaction.username}
-          </a>
+    <div className={containerClass}>
+      <div className={innerClass} style={reactionStyle}>
+        <strong className={strongClass}>
+          <p style={reactionStyle}>{props.reaction.username}</p>
         </strong>
-        {props.reaction.reactionBody}
-      </p>
+        {`> ${props.reaction.reactionBody}`}
+      </div>
     </div>
   );
 };

@@ -59,6 +59,7 @@ img {
 .postBtn {
   background-color: red;
   color: white;
+  font-size: large;
   border-radius: 15%;
   border: 1px white solid;
 }

@@ -5,7 +5,7 @@ import { useAppContext } from "../utils/AppContext";
 const Navigation = (props) => {
   const [signedIn, setsignedIn] = useState(true);
 
-  const { appState, logout } = useAppContext();
+  const { appState, logout, notFriends } = useAppContext();
 
   const logOutFunction = () => {
     logout();
@@ -17,39 +17,36 @@ const Navigation = (props) => {
     }
   }, [appState]);
 
-  let foo = window.location.href.split("/").pop();
-  foo = foo === "" ? "home" : foo;
+  const getId = (page) => {
+    let loc = window.location.href.split("/").pop();
+    loc = loc === "" ? "home" : loc;
+    return loc === page ? "selectedPage" : "nav-link";
+  };
 
   return (
     <>
       <Nav id="navBar" className="justify-content-end">
         <Nav.Item>
-          <Nav.Link id={foo === "home" ? "selectedPage" : "nav-link"} href="/">
+          <Nav.Link id={getId("home")} href="/">
             Home
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link
-            id={foo === "friends" ? "selectedPage" : "nav-link"}
-            href="/friends"
-          >
-            Friends
+          <Nav.Link id={getId("friends")} href="/friends">
+            Friends{" "}
+            <span className="badge text-bg-light rounded-pill align-text-bottom">
+              {notFriends.length}
+            </span>
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link
-            href="/profile"
-            id={foo === "profile" ? "selectedPage" : "nav-link"}
-          >
+          <Nav.Link href="/profile" id={getId("profile")}>
             Profile
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           {!signedIn && (
-            <Nav.Link
-              href="/login"
-              id={foo === "login" ? "selectedPage" : "nav-link"}
-            >
+            <Nav.Link href="/login" id={getId("login")}>
               Login
             </Nav.Link>
           )}
