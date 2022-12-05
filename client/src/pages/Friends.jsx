@@ -47,9 +47,7 @@ const Section = () => {
           </div>
 
           <div className="my-3 p-3  bg-light rounded shadow-sm">
-            <h6 className="purple-color border-bottom pb-2 mb-0">
-              Current Friends
-            </h6>
+            <h6 className=" border-bottom pb-2 mb-0">Current Friends</h6>
 
             {justFriends &&
               justFriends.map((item, i) => (
@@ -67,7 +65,11 @@ const Section = () => {
                       <strong className="text-gray-dark">
                         {item.username}
                       </strong>
-                      <button data-id={item.id} onClick={removeFriend}>
+                      <button
+                        className="postBtn"
+                        data-id={item.id}
+                        onClick={removeFriend}
+                      >
                         Remove Friend
                       </button>
                     </div>
@@ -97,7 +99,11 @@ const Section = () => {
                       <strong className="text-gray-dark">
                         {item.username}
                       </strong>
-                      <button data-id={item.id} onClick={addFriend}>
+                      <button
+                        className="postBtn"
+                        data-id={item.id}
+                        onClick={addFriend}
+                      >
                         Add Friend
                       </button>
                     </div>

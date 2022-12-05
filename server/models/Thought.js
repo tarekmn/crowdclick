@@ -9,10 +9,10 @@ const thoughtSchema = new Schema(
       required: true,
       max_length: 280,
     },
-    createdAt: {
-      type: Date,
-      default: Date.now(),
-    },
+    // createdAt: {
+    //   type: Date,
+    //   default: Date(),
+    // },
     username: {
       type: Types.ObjectId,
       ref: "User",
@@ -30,6 +30,7 @@ const thoughtSchema = new Schema(
       virtuals: true,
     },
     id: false,
+    timestamps: true,
   }
 );
 

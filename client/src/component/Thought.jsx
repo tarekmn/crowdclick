@@ -1,5 +1,6 @@
 import Reaction from "./Reaction";
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 
 const Thought = ({ item }) => {
   const [commenting, setCommenting] = useState(false);
@@ -31,7 +32,10 @@ const Thought = ({ item }) => {
               {item.user.username}
             </a>
           </strong>
-          <span>{item.thought.thoughtText}</span>
+          <span>
+            {item.thought.thoughtText} <br></br>
+            {new Date(item.thought.createdAt).toLocaleString()}
+          </span>
 
           {item.thought.reactions.map((reaction, i) => {
             return <Reaction key={i} reaction={reaction} />;
@@ -41,9 +45,9 @@ const Thought = ({ item }) => {
             <textarea onChange={(e) => setComment(e.target.value)}></textarea>
           )}
 
-          <button className="btn btn-primary" onClick={renderComment}>
+          <Button variant="link" onClick={renderComment}>
             comment
-          </button>
+          </Button>
 
           <div></div>
         </div>

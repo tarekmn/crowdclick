@@ -20,7 +20,6 @@ const AppProvider = (props) => {
     });
     const response = await query.json();
     setUserData(response);
-    console.log("In getUsers: userData is set");
   };
 
   useEffect(() => {

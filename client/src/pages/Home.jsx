@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../utils/AppContext";
+import { format } from "date-fns";
 import LogoSection from "../component/LogoSection";
 import Thought from "../component/Thought";
 
@@ -61,7 +62,7 @@ const Home = (props) => {
                 }
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="postBtn">
               Post
             </button>
           </form>
