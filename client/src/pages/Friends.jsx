@@ -46,7 +46,7 @@ const Section = () => {
             />
           </div>
 
-          <div className="my-3 p-3 bg-body bg-light rounded shadow-sm">
+          <div className="my-3 p-3  bg-light rounded shadow-sm">
             <h6 className="purple-color border-bottom pb-2 mb-0">
               Current Friends
             </h6>
@@ -76,7 +76,7 @@ const Section = () => {
               ))}
           </div>
 
-          <div className="my-3 p-3 bg-body bg-light rounded shadow-sm">
+          <div className="my-3 p-3  bg-light rounded shadow-sm">
             <h6 className="purple-color border-bottom pb-2 mb-0">
               Suggested Friends
             </h6>

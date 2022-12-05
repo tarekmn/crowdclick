@@ -41,7 +41,10 @@ const Home = (props) => {
       <main className="container">
         <LogoSection />
 
-        <div className="my-3 p-3 bg-body bg-light rounded shadow-sm">
+        <div
+          className="my-3 p-3  bg-light rounded shadow-md targetBox"
+          style={{ backgroundColor: "red " }}
+        >
           <h6 className=" border-bottom pb-2 mb-0">Recent updates</h6>
           <form id="post-form" onSubmit={handleFormSubmit}>
             <div className="form-group">
