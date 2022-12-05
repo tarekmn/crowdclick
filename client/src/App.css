@@ -47,3 +47,25 @@
   color: white;
   background-color: red;
 }
+
+/* .targetBox {
+  background-color: red;
+} */
+
+img {
+  border-radius: 100%;
+}
+
+.postBtn {
+  background-color: red;
+  color: white;
+  border-radius: 15%;
+  border: 1px white solid;
+}
+
+.postBtn:hover {
+  background-color: white;
+  color: red;
+  border-radius: 15%;
+  border: 1px red solid;
+}
