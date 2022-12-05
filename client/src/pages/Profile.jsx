@@ -15,7 +15,6 @@ const Profile = (props) => {
       username: currentUser.username,
       email: currentUser.email,
     });
-    console.log(currentUser);
   }, [currentUser]);
 
   const handleFormSubmit = async (e) => {
@@ -28,7 +27,7 @@ const Profile = (props) => {
         "Content-type": "application/json",
       },
     });
-    const response = await query.json();
+    await query.json();
     window.location.reload();
   };
 
