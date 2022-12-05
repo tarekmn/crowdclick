@@ -1,14 +1,27 @@
 const Reaction = (props) => {
   return (
     <div className="d-flex text-muted pt-3">
-      <p className="pb-3 mb-0 small lh-sm border-bottom">
+      <div
+        className="pb-3 mb-0 small lh-sm border-bottom"
+        style={{
+          fontSize: "small",
+          color: "black",
+          marginBottom: 0,
+        }}
+      >
         <strong className="d-block text-gray-dark">
-          <a className="purple-color" href="/users/{{comment.User.id}}">
+          <p
+            style={{
+              fontSize: "small",
+              color: "black",
+              marginBottom: 0,
+            }}
+          >
             {props.reaction.username}
-          </a>
+          </p>
         </strong>
-        {props.reaction.reactionBody}
-      </p>
+        {">"} {props.reaction.reactionBody}
+      </div>
     </div>
   );
 };

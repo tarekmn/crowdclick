@@ -25,16 +25,13 @@ const reactionSchema = new Schema(
       ref: "User",
       required: true,
     },
-    createdAt: {
-      type: Date,
-      default: Date.now(),
-    },
   },
   {
     toJSON: {
       virtuals: true,
     },
     id: false,
+    timestamps: true,
   }
 );
 
