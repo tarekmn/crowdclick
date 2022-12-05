@@ -70,6 +70,21 @@ module.exports = {
   },
 
 
+  async addLiker(req, res) {
+
+    console.log("HIT")
+    try {
+      const data = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $addToSet: { "likers": req.body.user } })
+      res.status(200).json(data)
+    } catch (error) {
+      console.log(error.message)
+      res.status(500).json(error)
+    }
+  },
+
+
   async deleteThought(req, res) {
     try {
       const data = await Thought.findOneAndRemove(

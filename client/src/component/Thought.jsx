@@ -1,10 +1,15 @@
 import Reaction from "./Reaction";
+import Link from "react-bootstrap/Nav";
 import { useAppContext } from "../utils/AppContext";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 
 const Thought = ({ item }) => {
   const { appState } = useAppContext();
+
+  const likesOnComment = item.thought.likers.length;
 
   const [commenting, setCommenting] = useState(false);
   const [comment, setComment] = useState("");
@@ -27,7 +32,7 @@ const Thought = ({ item }) => {
   const renderComment = (e) => {
     e.preventDefault();
     if (commenting && comment.length > 0) {
-      createReaction(comment, e.target.dataset.thoughtid);
+      createReaction(comment, item.thought._id);
 
       // submit comment
       console.log(comment);
@@ -36,9 +41,44 @@ const Thought = ({ item }) => {
     setCommenting(!commenting);
   };
 
+  const divClass = "d-flex text-muted pt-3";
+  const div2Class = "pb-3 mb-0 small lh-sm border-bottom";
+  const strongClass = "d-block text-gray-dark";
+  const h4Style = {
+    fontSize: "large",
+    color: "black",
+    paddingTop: "3px",
+    marginBottom: 1,
+  };
+
+  const spanStyle = {
+    fontSize: "medium",
+    color: "black",
+    textAlign: "center",
+    paddingTop: "20px",
+  };
+
+  const getButtonLabel = () =>
+    commenting ? (comment.length === 0 ? "Cancel" : "Submit") : "Comment";
+
+  const plusOne = async (e) => {
+    e.preventDefault();
+    console.log(item.thought._id);
+
+    await fetch(`/api/thoughts/like/${item.thought._id}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user: appState.user._id,
+      }),
+    });
+
+    window.location.href = "/";
+  };
+
   return (
     <>
-      <div className="d-flex text-muted pt-3">
+      <div className={divClass}>
         <img
           className="postimg"
           src={`/stock/${item.user.image}.png`}
@@ -46,31 +86,20 @@ const Thought = ({ item }) => {
           width="32"
           height="32"
         />
-        <div className="pb-3 mb-0 small lh-sm border-bottom">
-          <strong className="d-block text-gray-dark">
-            <h4
-              style={{
-                fontSize: "large",
-                color: "black",
-                paddingTop: "3px",
-                marginBottom: 1,
-              }}
-            >
-              {item.user.username}
-            </h4>
+        <div className={div2Class}>
+          <strong className={strongClass}>
+            <h4 style={h4Style}>{item.user.username}</h4>
+            <span> {new Date(item.thought.createdAt).toLocaleString()} </span>
           </strong>
-          <span
-            style={{
-              fontSize: "medium",
-              color: "black",
-              textAlign: "center",
-              paddingTop: "20px",
-            }}
-          >
-            {item.thought.thoughtText}
-          </span>{" "}
-          <br></br>
-          <span> {new Date(item.thought.createdAt).toLocaleString()}</span>
+          <span style={spanStyle}>{item.thought.thoughtText}</span> <br></br>
+          <Link onClick={plusOne}>
+            <FontAwesomeIcon
+              icon={faThumbsUp}
+              size="2x"
+              style={{ color: "red" }}
+            />
+          </Link>{" "}
+          {likesOnComment}
           {item.thought.reactions.map((reaction, i) => {
             return <Reaction key={i} reaction={reaction} />;
           })}
@@ -92,16 +121,8 @@ const Thought = ({ item }) => {
                 textAlign: "left",
               }}
             >
-              <Button
-                data-thoughtid={item.thought._id}
-                variant="link"
-                onClick={renderComment}
-              >
-                {commenting
-                  ? comment.length === 0
-                    ? "Cancel"
-                    : "Submit"
-                  : "Comment"}
+              <Button variant="link" onClick={renderComment}>
+                {getButtonLabel()}
               </Button>
             </div>
           </div>

@@ -9,10 +9,12 @@ const thoughtSchema = new Schema(
       required: true,
       max_length: 280,
     },
-    // createdAt: {
-    //   type: Date,
-    //   default: Date(),
-    // },
+    likers: [
+      {
+        type: Types.ObjectId,
+        ref: "User",
+      },
+    ],
     username: {
       type: Types.ObjectId,
       ref: "User",
