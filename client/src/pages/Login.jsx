@@ -88,11 +88,15 @@ const Login = () => {
               }
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="danger" type="submit">
             Submit
           </Button>{" "}
           {"      "}
-          <Button variant="secondary" type="click" onClick={navigateToSignUp}>
+          <Button
+            variant="outline-danger"
+            type="click"
+            onClick={navigateToSignUp}
+          >
             Sign-up
           </Button>
         </Form>

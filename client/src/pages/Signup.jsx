@@ -68,7 +68,7 @@ const Signup = () => {
         <Form.Group className="mb-3">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            type="text"
+            type="password"
             name="password"
             placeholder="password"
             value={newUser.password}
@@ -82,7 +82,7 @@ const Signup = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Button type="submit" variant="primary" size="md">
+          <Button type="submit" variant="danger" size="md">
             Submit
           </Button>
         </Form.Group>

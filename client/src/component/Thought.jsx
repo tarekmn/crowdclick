@@ -97,9 +97,19 @@ const Thought = ({ item }) => {
               icon={faThumbsUp}
               size="2x"
               style={{ color: "red" }}
-            />
-          </Link>{" "}
-          {likesOnComment}
+            />{" "}
+            <h5
+              style={{
+                fontSize: "medium",
+                color: "red",
+                paddingTop: "5px",
+                paddingLeft: "5px",
+              }}
+            >
+              {" "}
+              {likesOnComment} Likes{" "}
+            </h5>
+          </Link>
           {item.thought.reactions.map((reaction, i) => {
             return <Reaction key={i} reaction={reaction} />;
           })}
