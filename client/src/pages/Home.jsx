@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "../utils/AppContext";
-import { format } from "date-fns";
 import LogoSection from "../component/LogoSection";
 import Thought from "../component/Thought";
 
@@ -29,7 +28,7 @@ const Home = (props) => {
       }),
     });
 
-    window.location.href = "/";
+    appState.updateUsers();
   };
 
   const handleFormSubmit = (e) => {

@@ -8,16 +8,16 @@ import Slider from "../component/Slider";
 const Profile = (props) => {
   const { currentUser } = useAppContext();
   const [isShown, setIsShown] = useState(false);
+  const { appState } = useAppContext();
 
-  const [currentInfo, setCurrentInfo] = useState();
+  const [currentInfo, setCurrentInfo] = useState(currentUser);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   console.log(currentIndex);
 
   useEffect(() => {
     setCurrentInfo({
-      username: currentUser.username,
-      email: currentUser.email,
+      ...currentInfo,
       image: `stock${currentIndex}`,
     });
   }, [currentUser, currentIndex]);
@@ -33,7 +33,7 @@ const Profile = (props) => {
       },
     });
     await query.json();
-    window.location.reload();
+    appState.updateUsers();
   };
 
   const handleInputChange = (e) => {
@@ -122,10 +122,12 @@ const Profile = (props) => {
 
         <div className="container">
           <div className={mainStyle}>
-            {currentUser.thoughts.map((thought, i) => {
-              const item = { thought, user: currentUser };
-              return <Thought key={i} item={item} i={i} />;
-            })}
+            {currentUser.thoughts
+              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+              .map((thought, i) => {
+                const item = { thought, user: currentUser };
+                return <Thought key={i} item={item} i={i} />;
+              })}
           </div>
         </div>
       </main>

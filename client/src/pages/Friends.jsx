@@ -14,7 +14,7 @@ const Section = () => {
         currentid: appState.user._id,
       }),
     });
-    window.location.reload(); // FIXME
+    window.location.reload();
   };
 
   const addFriend = async (e) => {
@@ -29,7 +29,7 @@ const Section = () => {
       }),
     });
 
-    window.location.reload(); // FIXME
+    window.location.reload();
   };
 
   return (
