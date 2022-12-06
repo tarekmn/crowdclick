@@ -60,7 +60,7 @@ const Profile = (props) => {
           <button
             onClick={() => setIsShown((current) => !current)}
             type="button"
-            className="btn btn-primary btn-rounded btn-lg"
+            className="postBtn btn-sm"
           >
             {isShown ? "Cancel" : "Update Info"}
           </button>
@@ -95,7 +95,7 @@ const Profile = (props) => {
                 className="mb-6"
                 style={{ width: "50%", margin: "0 auto", padding: "5px" }}
               >
-                <Button type="submit" variant="primary" size="md">
+                <Button type="submit" className="postBtn" size="sm">
                   Submit
                 </Button>
               </Form.Group>
