@@ -6,13 +6,6 @@ const AppContext = createContext();
 export const useAppContext = () => useContext(AppContext);
 
 const AppProvider = (props) => {
-  const [appState, setAppState] = useState({ user: null });
-  const [appReady, setAppReady] = useState(false);
-  const [justFriends, setJustFriends] = useState([]);
-  const [notFriends, setNotFriends] = useState([]);
-  const [currentUser, setCurrentUser] = useState([]);
-
-  const [userData, setUserData] = useState();
 
   const getUsers = async () => {
     const query = await fetch("/api/users", {
@@ -21,6 +14,16 @@ const AppProvider = (props) => {
     const response = await query.json();
     setUserData(response);
   };
+
+
+  const [appState, setAppState] = useState({ user: null, updateUsers: getUsers });
+  const [appReady, setAppReady] = useState(false);
+  const [justFriends, setJustFriends] = useState([]);
+  const [notFriends, setNotFriends] = useState([]);
+  const [currentUser, setCurrentUser] = useState([]);
+
+  const [userData, setUserData] = useState();
+
 
   useEffect(() => {
     getUsers();

@@ -26,7 +26,7 @@ const Thought = ({ item }) => {
       }),
     });
 
-    window.location.href = "/";
+    appState.updateUsers();
   };
 
   const renderComment = (e) => {
@@ -63,7 +63,6 @@ const Thought = ({ item }) => {
 
   const plusOne = async (e) => {
     e.preventDefault();
-    console.log(item.thought._id);
 
     await fetch(`/api/thoughts/like/${item.thought._id}`, {
       method: "POST",
@@ -73,7 +72,7 @@ const Thought = ({ item }) => {
       }),
     });
 
-    window.location.href = "/";
+    appState.updateUsers();
   };
 
   return (
