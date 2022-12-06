@@ -33,9 +33,6 @@ const Thought = ({ item }) => {
     e.preventDefault();
     if (commenting && comment.length > 0) {
       createReaction(comment, item.thought._id);
-
-      // submit comment
-      console.log(comment);
     }
 
     setCommenting(!commenting);

@@ -5,7 +5,6 @@ import Slider from "../component/Slider";
 
 const Signup = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log(currentIndex);
 
   const [newUser, setNewUser] = useState({
     username: "",

@@ -13,7 +13,6 @@ const Profile = (props) => {
   const [currentInfo, setCurrentInfo] = useState(currentUser);
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log(currentIndex);
 
   useEffect(() => {
     setCurrentInfo({
@@ -24,7 +23,6 @@ const Profile = (props) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log(currentInfo);
     const query = await fetch(`/api/users/${currentUser.id}`, {
       method: "PUT",
       body: JSON.stringify(currentInfo),
@@ -87,7 +85,7 @@ const Profile = (props) => {
                 <Form.Control
                   type="text"
                   name="username"
-                  placeholder="John"
+                  placeholder={currentUser.username}
                   value={currentInfo.username}
                   onChange={handleInputChange}
                 />
@@ -97,7 +95,7 @@ const Profile = (props) => {
                 <Form.Control
                   type="text"
                   name="email"
-                  placeholder="jdoe@gmail.com"
+                  placeholder={currentUser.email}
                   value={currentInfo.email}
                   onChange={handleInputChange}
                 />
