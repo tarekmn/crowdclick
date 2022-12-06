@@ -1,8 +1,4 @@
-import { useState } from "react";
-
-const ImageSlider = (props) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
+const ImageSlider = ({ currentIndex, setCurrentIndex }) => {
   const slides = [
     "stock0",
     "stock1",

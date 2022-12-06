@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import LogoSection from "../component/LogoSection";
 import Slider from "../component/Slider";
 
 const Signup = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  console.log(currentIndex);
+
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
     password: "",
+    image: "stock0",
   });
 
   const createUser = async (req, res) => {
@@ -18,25 +22,34 @@ const Signup = () => {
         username: newUser.username,
         email: newUser.email,
         password: newUser.password,
+        image: newUser.image,
       }),
     });
 
     window.location.href = "/";
   };
 
+  useEffect(() => {
+    setNewUser({ ...newUser, image: `stock${currentIndex}` });
+  }, [currentIndex]);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
     createUser();
   };
 
   return (
-    <Container style={{ padding: "50px 200px" }}>
+    <Container style={{}}>
       <Form onSubmit={handleFormSubmit}>
         <LogoSection />
         <h1>Create account</h1>
         <Form.Group className="mb-3">
           <Form.Label>Profile Picture</Form.Label>
-          <Slider />
+          <Slider
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+          />
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
@@ -87,6 +100,9 @@ const Signup = () => {
         <Form.Group className="mb-3">
           <Button type="submit" className="postBtn" size="md">
             Submit
+          </Button>
+          <Button type="submit" className="signupBtn" href="/login" size="md">
+            Back
           </Button>
         </Form.Group>
       </Form>

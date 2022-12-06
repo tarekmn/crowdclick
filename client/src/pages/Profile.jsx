@@ -11,12 +11,16 @@ const Profile = (props) => {
 
   const [currentInfo, setCurrentInfo] = useState();
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  console.log(currentIndex);
+
   useEffect(() => {
     setCurrentInfo({
       username: currentUser.username,
       email: currentUser.email,
+      image: `stock${currentIndex}`,
     });
-  }, [currentUser]);
+  }, [currentUser, currentIndex]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -36,14 +40,18 @@ const Profile = (props) => {
     setCurrentInfo({ ...currentInfo, [e.target.name]: e.target.value });
   };
 
+  const mainStyle = "padding my-3 p-3  bg-light rounded shadow-md";
+  const div1Style = "d-flex justify-content-center";
+  const h6Style = "border-bottom pb-2 mt-5";
+
   return currentUser.length <= 0 ? (
     "Loading..."
   ) : (
     <>
       <main className="container">
-        <div className="padding my-3 p-3  bg-light rounded shadow-md ">
+        <div className={mainStyle}>
           <div className="profile-header">
-            <div className="d-flex justify-content-center">
+            <div className={div1Style}>
               <img
                 className="mb-4 mt-4 profile-pic"
                 src={`/stock/${currentUser.image}.png`}
@@ -52,7 +60,7 @@ const Profile = (props) => {
               />
             </div>
             <div className="container">
-              <div className="d-flex justify-content-center">
+              <div className={div1Style}>
                 <h3 className="m-b-0">{currentUser.username}</h3>
               </div>
             </div>
@@ -71,7 +79,10 @@ const Profile = (props) => {
             <Form style={{}} onSubmit={handleFormSubmit}>
               <Form.Group style={{ width: "50%", margin: "0 auto" }}>
                 <Form.Label>Profile Picture</Form.Label>
-                <Slider />
+                <Slider
+                  currentIndex={currentIndex}
+                  setCurrentIndex={setCurrentIndex}
+                />
                 <Form.Label>Username</Form.Label>
                 <Form.Control
                   type="text"
@@ -103,14 +114,14 @@ const Profile = (props) => {
           </div>
         )}
 
-        <div className="d-flex justify-content-center">
-          <h6 className="border-bottom pb-2 mt-5" id="post-title">
+        <div className={div1Style}>
+          <h6 className={h6Style} id="post-title">
             Posts
           </h6>
         </div>
 
         <div className="container">
-          <div className="my-3 p-3  bg-light rounded shadow-md ">
+          <div className={mainStyle}>
             {currentUser.thoughts.map((thought, i) => {
               const item = { thought, user: currentUser };
               return <Thought key={i} item={item} i={i} />;

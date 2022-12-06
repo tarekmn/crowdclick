@@ -44,9 +44,6 @@ const Login = () => {
     navigate("/signup");
   };
 
-  // Here is one of the best uses for useEffect. Here we have it monitoring the appState value that's in
-  // context. As soon as the employee property of appState is not null, we know we have a logged in user,
-  // and so we are redirected to the home page.
   useEffect(() => {
     if (appState && appState.user) {
       window.location.href = "/";
@@ -55,7 +52,7 @@ const Login = () => {
 
   return (
     <>
-      <Container style={{ padding: "50px 200px" }}>
+      <Container style={{}}>
         <Form onSubmit={handleLogin}>
           <LogoSection />
           <Form.Group className="mb-3" controlId="email">
