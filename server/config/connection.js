@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
+require('dotenv').config()
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/crowdclickDB" || "mongodb://localhost/crowdclickDB", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/crowdclickDB", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
