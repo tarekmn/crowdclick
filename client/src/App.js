@@ -13,9 +13,8 @@ function App() {
   return (
     <div>
       <AppProvider>
+        <Navigation />
         <BrowserRouter>
-          <Navigation />
-
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/friends" element={<Friends />} />
