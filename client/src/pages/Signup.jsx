@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import LogoSection from "../component/LogoSection";
 import Slider from "../component/Slider";
@@ -21,16 +21,12 @@ const Signup = () => {
         username: newUser.username,
         email: newUser.email,
         password: newUser.password,
-        image: newUser.image,
+        image: `stock${currentIndex}`,
       }),
     });
 
     window.location.href = "/";
   };
-
-  useEffect(() => {
-    setNewUser({ ...newUser, image: `stock${currentIndex}` });
-  }, [currentIndex]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();

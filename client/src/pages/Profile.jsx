@@ -16,7 +16,8 @@ const Profile = (props) => {
 
   useEffect(() => {
     setCurrentInfo({
-      ...currentInfo,
+      username: currentUser.username,
+      email: currentUser.email,
       image: `stock${currentIndex}`,
     });
   }, [currentUser, currentIndex]);
@@ -85,7 +86,7 @@ const Profile = (props) => {
                 <Form.Control
                   type="text"
                   name="username"
-                  placeholder={currentUser.username}
+                  placeholder=""
                   value={currentInfo.username}
                   onChange={handleInputChange}
                 />
@@ -95,7 +96,7 @@ const Profile = (props) => {
                 <Form.Control
                   type="text"
                   name="email"
-                  placeholder={currentUser.email}
+                  placeholder=""
                   value={currentInfo.email}
                   onChange={handleInputChange}
                 />
