@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Thought from "../component/Thought";
 import Form from "react-bootstrap/Form";
+import Slider from "../component/Slider";
 
 const Profile = (props) => {
   const { currentUser } = useAppContext();
@@ -66,36 +67,40 @@ const Profile = (props) => {
         </div>
 
         {isShown && (
-          <Form style={{}} onSubmit={handleFormSubmit}>
-            <Form.Group style={{ width: "50%", margin: "0 auto" }}>
-              <Form.Label>Username</Form.Label>
-              <Form.Control
-                type="text"
-                name="username"
-                placeholder="John"
-                value={currentInfo.username}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group style={{ width: "50%", margin: "0 auto" }}>
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="text"
-                name="email"
-                placeholder="jdoe@gmail.com"
-                value={currentInfo.email}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-6"
-              style={{ width: "50%", margin: "0 auto", padding: "5px" }}
-            >
-              <Button type="submit" variant="primary" size="md">
-                Submit
-              </Button>
-            </Form.Group>
-          </Form>
+          <div>
+            <Form style={{}} onSubmit={handleFormSubmit}>
+              <Form.Group style={{ width: "50%", margin: "0 auto" }}>
+                <Form.Label>Profile Picture</Form.Label>
+                <Slider />
+                <Form.Label>Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="username"
+                  placeholder="John"
+                  value={currentInfo.username}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group style={{ width: "50%", margin: "0 auto" }}>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="email"
+                  placeholder="jdoe@gmail.com"
+                  value={currentInfo.email}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group
+                className="mb-6"
+                style={{ width: "50%", margin: "0 auto", padding: "5px" }}
+              >
+                <Button type="submit" variant="primary" size="md">
+                  Submit
+                </Button>
+              </Form.Group>
+            </Form>
+          </div>
         )}
 
         <div className="d-flex justify-content-center">

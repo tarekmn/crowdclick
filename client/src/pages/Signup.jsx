@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import LogoSection from "../component/LogoSection";
+import Slider from "../component/Slider";
 
 const Signup = () => {
   const [newUser, setNewUser] = useState({
@@ -32,8 +33,10 @@ const Signup = () => {
     <Container style={{ padding: "50px 200px" }}>
       <Form onSubmit={handleFormSubmit}>
         <LogoSection />
-        <h1>Create a new account!</h1>
+        <h1>Create account</h1>
         <Form.Group className="mb-3">
+          <Form.Label>Profile Picture</Form.Label>
+          <Slider />
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
