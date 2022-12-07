@@ -21,7 +21,7 @@ connection.once("open", async () => {
     "username": "Tarek",
     "email": "test@gmail.com",
     "image": "stock4",
-    "password": "test123",
+    "password": "password",
   });
 
   const user2 = await User.create({
@@ -29,7 +29,7 @@ connection.once("open", async () => {
     "username": "Ben",
     "email": "test2@gmail.com",
     "image": "stock6",
-    "password": "test123",
+    "password": "password",
   });
 
   const user3 = await User.create({
@@ -37,7 +37,7 @@ connection.once("open", async () => {
     "username": "Mike",
     "email": "test3@gmail.com",
     "image": "stock8",
-    "password": "test123",
+    "password": "password",
   });
 
   const user4 = await User.create({
@@ -45,7 +45,7 @@ connection.once("open", async () => {
     "username": "Cindy",
     "email": "test4@gmail.com",
     "image": "stock5",
-    "password": "test123",
+    "password": "password",
   });
 
   const user5 = await User.create({
@@ -53,7 +53,7 @@ connection.once("open", async () => {
     "username": "Emma",
     "email": "test5@gmail.com",
     "image": "stock12",
-    "password": "test123",
+    "password": "password",
   });
 
   // Insert thought
